@@ -1,8 +1,6 @@
 package lab5.runners;
 
-import lab5.commands.BaseCommand;
-import lab5.commands.ExitCommand;
-import lab5.commands.ShowCommand;
+import lab5.commands.*;
 import lab5.exceptions.*;
 import lab5.inputters.*;
 import lab5.memory.OverflowChecker;
@@ -27,7 +25,9 @@ public class Commands {
 
     private static List<BaseCommand> commands = Arrays.asList(
             new ShowCommand(),
-            new ExitCommand()
+            new ExitCommand(),
+            new HelpCommand(),
+            new InfoCommand()
     );
 
     /**
@@ -107,16 +107,8 @@ public class Commands {
         return bum;
     }
 
-    /**
-     * help command
-     * show all commands
-     */
 
 
-    public static void help(List<String> params, LinkedHashSet<Worker> set) {
-        ParamsChecker.checkParams(0, params);
-        System.out.println(open("Commands.txt"));
-    }
 
 
     /**
@@ -262,28 +254,6 @@ public class Commands {
         updateAll(bum);
         bum = makeId(bum);
         set.add(bum);
-    }
-
-
-    /**
-     * show command
-     * show all obj from in Collection
-     */
-
-    public static void show(List<String> params, LinkedHashSet<Worker> set) throws EmptyCollectionException {
-        ParamsChecker.checkParams(0, params);
-        if (set.size() == 0) {
-            throw new EmptyCollectionException();
-        }
-        Iterator<Worker> it1 = set.iterator();
-        String pattern = "dd.MM.yyyy";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        DateFormat df = new SimpleDateFormat(pattern);
-        while (it1.hasNext()) {
-            Worker bum = it1.next();
-            System.out.println(bum.toString());
-            //outputStreamWriter.write((bum.getName()+";"+Long.toString(bum.getCoordinates().getX())+";"+Integer.toString(bum.getCoordinates().getY())+";"+Float.toString(bum.getSalary())+";"+df.format(bum.getStartDate())+";"+df.format(bum.getEndDate())+";"+bum.getPerson().getBirthday().format(formatter)+";"+Float.toString(bum.getPerson().getHeight())+";"+Float.toString(bum.getPerson().getWeight())+";"+bum.getPosition().toString())+"\r\n");
-        }
     }
 
     /**
@@ -568,7 +538,11 @@ public class Commands {
 
                 try {
                     command.ExecuteCommand(commandParams, workers);
-                } catch (Exception e) {
+                }catch (MissedCommandArgumentException e) {
+                    System.out.println(e.getMessage());
+
+                }
+                catch (Exception e) {
                     e.printStackTrace();
                 }
 
