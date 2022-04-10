@@ -2,7 +2,7 @@ package lab5.memory;
 
 import java.util.ArrayList;
 
-public class historyWork {
+public class HistoryWork {
         private static ArrayList<String> history = new ArrayList<String>();
 
 

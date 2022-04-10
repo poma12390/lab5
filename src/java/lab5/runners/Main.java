@@ -6,7 +6,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         LinkedHashSet<Worker> set = new LinkedHashSet<>();
-        String start = Commands.open("C:\\Users\\pomat\\IdeaProjects\\lab5\\lab5\\lab5\\src\\resources\\input.csv");
+        String start = Commands.open("C:\\Users\\pomat\\IdeaProjects\\lab5\\save.csv");
         String env = System.getenv("Javahome");
         System.out.println(env + " env");
         // String start = Commands.open(System.getenv("Javahome"));
@@ -25,7 +25,8 @@ public class Main {
         }
         catch (NullPointerException | NoSuchElementException e){
             Commands.funExit();
-
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 

@@ -148,6 +148,7 @@ public class Worker implements Comparable<Worker>{
         if (Float.toString(getPerson().getHeight())!=null) {s += Float.toString(getPerson().getHeight()) + ";";} else{s+=";";}
         if (Float.toString(getPerson().getWeight())!=null) {s += Float.toString(getPerson().getWeight()) + ";";} else{s+=";";}
         if (position!=null) {s +=position.toString() + ";";} else {s+=";";}
+        if (id!=null){s += id.toString() + "";} else {s+="lifehaack";}
         s+="\r\n";
         return s;
     }

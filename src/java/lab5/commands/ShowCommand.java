@@ -20,7 +20,6 @@ public class ShowCommand extends BaseCommand {
 
     @Override
     protected void Execute(List<String> params, LinkedHashSet<Worker> set) {
-        try {
             ParamsChecker.checkParams(0, params);
             if (set.size() == 0) {
                 throw new EmptyCollectionException();
@@ -36,8 +35,5 @@ public class ShowCommand extends BaseCommand {
             }
             //Commands.show(params, set);
 
-        } catch (EmptyCollectionException e) {
-            System.out.println(e.getMessage());
-        }
     }
 }
