@@ -19,6 +19,23 @@ import static lab5.inputters.InputUtils.*;
 public class Commands {
     private static ArrayList<Integer> ids = new ArrayList<Integer>();
 
+    public static BufferedReader currentBufferedReader;
+
+    public static boolean blockPrompts = false;
+
+    public static void setBlockPrompts(boolean blockPrompts) {
+        Commands.blockPrompts = blockPrompts;
+    }
+
+    public static void setIsFileExecuted(boolean isFileExecuted) {
+        Commands.isFileExecuted = isFileExecuted;
+    }
+
+    public static boolean isFileExecuted = false;
+
+    public static void setCurrentBufferedReader(BufferedReader currentBufferedReader) {
+        Commands.currentBufferedReader = currentBufferedReader;
+    }
     private static List<BaseCommand> commands = Arrays.asList(
             new ShowCommand(),
             new ExitCommand(),
@@ -160,7 +177,51 @@ public class Commands {
      * @param bum Woker to update it's stats
      */
 
-    public static void updateAll(Worker bum) throws IOException {
+    public static void updateAll(Worker bum) {
+
+        String input = inputString("(string) name");
+        bum.setName(input);
+
+        Coordinates cord = new Coordinates();
+        long x = inputLong("(int) x");
+        int y = inputInt("(long) y");
+
+        Float salary = inputFloat("(float) salary");
+        bum.setSalary(salary);
+        cord.setXY(x, y);
+        bum.setCoordinates(cord);
+
+        Date startDate = inputData("(date) start date");
+        bum.setStartDate(startDate);
+        Date endDate;
+        do {
+            endDate = inputData("(date) end date");
+            bum.setEndDate(endDate);
+        } while (startDate.after(endDate));
+
+        Person pers = new Person();
+        ZonedDateTime birthday = inputZonedDate("(date) birthday");
+        pers.setBirthday(birthday);
+
+        Float height = inputFloat("(float) height");
+        pers.setHeight(height);
+        Float weight = inputFloat("(float) weight");
+        pers.setWeight(weight);
+
+        bum.setPerson(pers);
+
+        bum.setPosition(inputPosition(
+                new StringJoiner(",")
+                        .add(Position.BAKER.toString())
+                        .add(Position.DIRECTOR.toString())
+                        .add(Position.ENGINEER.toString())
+                        .add(Position.LABORER.toString())
+                        .add(Position.MANAGER.toString())
+                        .toString()
+        ));
+    }
+    @Deprecated
+    public static void updateAll1(Worker bum) throws IOException {
         InputStream inputStream = System.in;
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);

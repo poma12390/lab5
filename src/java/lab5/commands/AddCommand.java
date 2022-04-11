@@ -19,15 +19,11 @@ public class AddCommand extends BaseCommand{
     @Override
     protected void Execute(List<String> params, LinkedHashSet<Worker> set) {
         ParamsChecker.checkParams(0, params);
-        try {
             ParamsChecker.checkParams(0, params);
             Worker bum = new Worker();
 
             Commands.updateAll(bum);
             bum = makeId(bum);
             set.add(bum);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

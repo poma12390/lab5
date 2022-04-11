@@ -1,13 +1,17 @@
 package lab5.inputters;
 
-import java.io.IOException;
+import java.io.BufferedReader;
 
 public class IntInputer extends AbstractInputer<Integer> {
 
-    @Override
-    protected Integer doInput() throws IOException {
+    public IntInputer(BufferedReader bufferedReader, boolean blockPrompt) {
+        super(bufferedReader, blockPrompt);
+    }
 
-        return Integer.parseInt(getBufferedReader().readLine());
+    @Override
+    protected Integer doInput(String line) {
+
+        return Integer.parseInt(line);
     }
 
 }

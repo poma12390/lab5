@@ -1,21 +1,25 @@
 package lab5.inputters;
 
-import lab5.exceptions.InvalidSalaryException;
-import lab5.runners.Commands;
+import lab5.exceptions.EmptyStringException;
+import lab5.exceptions.EndStreamException;
 import lab5.exceptions.InvalidDateFormatException;
+import lab5.runners.Commands;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.NoSuchElementException;
 
 public abstract class AbstractInputer<T> {
 
-    private final InputStream inputStream = System.in;
-    private final InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-    private final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+    private final BufferedReader bufferedReader;
+    private final boolean blockPrompt;
+
+    protected AbstractInputer(BufferedReader bufferedReader, boolean blockPrompt) {
+        this.bufferedReader = bufferedReader;
+        this.blockPrompt = blockPrompt;
+    }
+
 
     /**
      * inputvalide command
@@ -26,24 +30,29 @@ public abstract class AbstractInputer<T> {
         name = name.trim();
         while (true) {
             try {
-                System.out.print("введите " + name + " ");
-                return doInput();
+                if (!name.isEmpty() && !blockPrompt)
+                    System.out.print("введите " + name + " ");
+                String line = getBufferedReader().readLine();
+                if (line == null)
+                    throw new EndStreamException();
+                line = line.trim();
+                return doInput(line);
             } catch (NumberFormatException e) {
-                System.out.println("not a number ");
-            }
-            catch (InvalidSalaryException e){
-                System.out.println("salary must be >=0");
+                if (!blockPrompt) System.out.println("not a number ");
             }
             catch (NullPointerException | NoSuchElementException e) {
                 Commands.funExit();
             }
+            catch (EndStreamException e) {
+                throw e;
+            }
             catch (Exception e){
-                System.out.println(e.getMessage());
+                if (!blockPrompt) System.out.println(e.getMessage());
             }
         }
     }
 
-    protected abstract T doInput() throws IOException, InvalidDateFormatException, ParseException, NullPointerException, NoSuchElementException, InvalidSalaryException;
+    protected abstract T doInput(String line) throws IOException, InvalidDateFormatException, ParseException, NullPointerException, NoSuchElementException, EmptyStringException;
 
 
     public BufferedReader getBufferedReader() {

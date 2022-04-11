@@ -1,12 +1,16 @@
 package lab5.inputters;
 
-import java.io.IOException;
+import java.io.BufferedReader;
 
 public class LongInputer extends AbstractInputer<Long> {
 
+    public LongInputer(BufferedReader bufferedReader, boolean blockPrompt) {
+        super(bufferedReader, blockPrompt);
+    }
+
     @Override
-    protected Long doInput() throws IOException {
-        return Long.parseLong(getBufferedReader().readLine());
+    protected Long doInput(String line) {
+        return Long.parseLong(line);
     }
 
 }
