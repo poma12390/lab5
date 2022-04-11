@@ -16,8 +16,8 @@ public class Main {
         InputStream inputStream = System.in;
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        Commands.setCurrentBufferedReader(bufferedReader);
         try{
-
         while (true) {
             System.out.print("Write a command: ");
             String input = bufferedReader.readLine();

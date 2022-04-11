@@ -360,7 +360,11 @@ public class Commands {
                 }catch (MissedCommandArgumentException e) {
                     System.out.println(e.getMessage());
 
-                } catch (Exception e) {
+                }catch (EndStreamException ignored){
+
+                }
+                catch (Exception e) {
+                    System.out.println("sd");
                     e.printStackTrace();
                 }
             }

@@ -18,7 +18,6 @@ public class AddCommand extends BaseCommand{
 
     @Override
     protected void Execute(List<String> params, LinkedHashSet<Worker> set) {
-        ParamsChecker.checkParams(0, params);
             ParamsChecker.checkParams(0, params);
             Worker bum = new Worker();
 
