@@ -12,6 +12,11 @@ import java.util.List;
 import static lab5.runners.Commands.makeId;
 
 public class AddIfMinCommand extends BaseCommand{
+    @Override
+    public String getName() {
+        return "add_If_min";
+    }
+
     /**
      * addIfMin command
      * add new Worker if it's min in coll

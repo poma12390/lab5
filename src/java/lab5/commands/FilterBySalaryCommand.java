@@ -11,6 +11,11 @@ import java.util.List;
 
 public class FilterBySalaryCommand extends BaseCommand{
     @Override
+    public String getName() {
+        return "filter_by_salary";
+    }
+
+    @Override
     protected int getCommandParamsCount() {
         return 1;
     }

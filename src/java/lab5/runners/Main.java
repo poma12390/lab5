@@ -12,7 +12,6 @@ public class Main {
         // String start = Commands.open(System.getenv("Javahome"));
         Commands.begin(start, set);
 
-
         InputStream inputStream = System.in;
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);

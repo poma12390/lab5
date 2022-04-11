@@ -9,6 +9,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 public class RemoveLowerCommand extends BaseCommand{
+    @Override
+    public String getName() {
+        return "remove_lower";
+    }
 
     /**
      * removeLower command

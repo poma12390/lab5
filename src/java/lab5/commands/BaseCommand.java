@@ -5,6 +5,7 @@ import lab5.memory.HistoryWork;
 import lab5.runners.ParamsChecker;
 import lab5.runners.Worker;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.LinkedHashSet;
@@ -33,7 +34,7 @@ public abstract class BaseCommand {
         return 0;
     }
 
-    protected abstract void Execute(List<String> params, LinkedHashSet<Worker> set) throws IOException, InvalidSalaryException, InvalidDateFormatException, ParseException;
+    protected abstract void Execute(List<String> params, LinkedHashSet<Worker> set) throws IOException, InvalidSalaryException, InvalidDateFormatException, ParseException, InvalidEndDateException;
 
     public String getName() {
         return name;
@@ -44,7 +45,7 @@ public abstract class BaseCommand {
         try {
             Execute(params, set);
             HistoryWork.historyAdd(name);
-        } catch (MissedCommandArgumentException | EmptyCollectionException | InvalidSalaryException | InvalidDateFormatException | RecursiveScriptExecuteException e){
+        } catch (InvalidEndDateException | FileNotFoundException | MissedCommandArgumentException | EmptyCollectionException | InvalidSalaryException | InvalidDateFormatException | RecursiveScriptExecuteException e){
             System.out.println(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();

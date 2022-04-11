@@ -9,6 +9,11 @@ import java.util.List;
 
 public class RemoveByIdCommand extends BaseCommand{
     @Override
+    public String getName() {
+        return "remove_by_id";
+    }
+
+    @Override
     protected int getCommandParamsCount() {
         return 1;
     }

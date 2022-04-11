@@ -16,6 +16,11 @@ import lab5.memory.OverflowChecker;
 
 public class ExecuteScriptCommand extends BaseCommand{
     @Override
+    public String getName() {
+        return "execute_script";
+    }
+
+    @Override
     protected int getCommandParamsCount() {
         return 1;
     }

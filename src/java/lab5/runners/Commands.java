@@ -101,7 +101,6 @@ public class Commands {
 
     private static Worker upload(String[] sts) throws InvalidDataException, ParseException {
         Worker bum = new Worker();
-        try {
             String name = sts[0].trim();
             SetName.setname(name, bum);
             String x = sts[1].trim();
@@ -123,14 +122,13 @@ public class Commands {
             bum.setPerson(person);
             String pos = sts[9].trim();
             SetPosition.setPosition(pos, bum);
-        }
-        catch (Exception e){
-            System.out.println("не корректный csv файл, один из элементов не установлен");
+            String id = sts[10].trim();
+            SetId.setId(id,bum);
+            String crdate = sts[11].trim();
+            SetData.setCreationData(crdate,bum);
+            return bum;
         }
 
-
-        return bum;
-    }
 
 
 
@@ -151,12 +149,13 @@ public class Commands {
                 if (worker.getPosition() == null){
                     throw new EmptyCollectionException();
                 }
-                worker = makeId(worker);
                 set.add(worker);
             } catch (InvalidDataException | ParseException e) {
                 System.out.println(e.getMessage());
             }catch (EmptyCollectionException e){
-                //System.out.println("не вайлидый файл");
+                System.out.println("не вайлидый файл");
+            }catch (Exception e){
+                System.out.println("не корректный csv файл, один из элементов не установлен");
             }
         }
 
@@ -195,9 +194,9 @@ public class Commands {
         bum.setStartDate(startDate);
         Date endDate;
         do {
-            endDate = inputData("(date) end date");
+            endDate = inputData("(date) end date > start date");
             bum.setEndDate(endDate);
-        } while (startDate.after(endDate));
+        } while (startDate.after(endDate) | startDate.compareTo(endDate)==0);
 
         Person pers = new Person();
         ZonedDateTime birthday = inputZonedDate("(date) birthday");
@@ -219,93 +218,20 @@ public class Commands {
                         .add(Position.MANAGER.toString())
                         .toString()
         ));
-    }
-    @Deprecated
-    public static void updateAll1(Worker bum) throws IOException {
-        InputStream inputStream = System.in;
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        boolean c;
-        String input = "";
-        while (input.isEmpty()) {
-            System.out.print("write name: ");
-            input = bufferedReader.readLine().trim();
-            if (input.isEmpty()) {
-                System.out.println("try again string is empty ");
-            }
-
-        }
-        bum.setName(input);
-        Coordinates cord = new Coordinates();
-        long x = inputLong("(int) x");
-        int y = inputInt("(long) y");
-
-        boolean a = true;
-        while (a) {
-            Float salary = inputFloat("(float) salary");
-            if (salary > 0) {
-                bum.setSalary(salary);
-                a = false;
-            }
-            else {
-                System.out.println("salary must be =>0");
-            }
-        }
-        cord.setXY(x, y);
-        bum.setCoordinates(cord);
-
-        Date startDate = inputData("(date) start date");
-        bum.setStartDate(startDate);
-        a = true;
-        while (a){
-            Date endDate = inputData("(date) end date");
-            if (endDate.compareTo(bum.getStartDate())<=0){
-                System.out.println("start date should be < enddate");
-            }
-            else{
-                bum.setEndDate(endDate);
-                a = false;
-            }
-        }
-
-
-
-        Person pers = new Person();
-        ZonedDateTime birthday = inputZonedDate("(date) birthday");
-        pers.setBirthday(birthday);
-
-        Float height = inputFloat("(float) height");
-        pers.setHeight(height);
-        Float weight = inputFloat("(float) weight");
-        pers.setWeight(weight);
-
-        bum.setPerson(pers);
-
-        a = true;
-
-        while (a) {
-            System.out.print("write position: (BAKER, LABORER, DIRECTOR, MANAGER,ENGINEER)");
-            input = bufferedReader.readLine();
-            try {
-                SetPosition.setPosition(input, bum);
-                a = false;
-
-            }
-            catch (NullPointerException | NoSuchElementException e) {
-                funExit();
-            }catch (Exception e) {
-                System.out.println(" No such enum");
-            }
-
-        }
-
+        bum.setCreationDate(new Date());
     }
 
 
 
     public static Worker makeId(Worker bum) {
-        bum.setId(ids.size() + 1);
-        ids.add(ids.size() + 1);
+        Collections.sort(ids);
+        for (int i =1; i<ids.size()+2; i++){
+            if (!ids.contains(i)){
+                bum.setId(i);
+                ids.add(i);
+                break;
+            }
+        }
         return bum;
     }
 

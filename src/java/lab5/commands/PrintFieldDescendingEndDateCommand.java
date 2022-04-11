@@ -6,6 +6,11 @@ import lab5.runners.Worker;
 import java.util.*;
 
 public class PrintFieldDescendingEndDateCommand extends BaseCommand{
+    @Override
+    public String getName() {
+        return "print_field_descending_endDate";
+    }
+
     /**
      * printFieldDescendingDate command
      * show sorted endDate

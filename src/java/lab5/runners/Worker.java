@@ -30,6 +30,10 @@ public class Worker implements Comparable<Worker>{
         return name;
     }
 
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
     public Coordinates getCoordinates() {
         return coordinates;
     }
@@ -126,6 +130,7 @@ public class Worker implements Comparable<Worker>{
 
         String edate = "";
         String sdate ="";
+        String crdate ="";
         String pattern = "dd.MM.yyyy";
         String birth = "";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -137,7 +142,10 @@ public class Worker implements Comparable<Worker>{
         if (startDate != null){sdate = df.format(startDate);}
         birth = getPerson().getBirthday().format(formatter);
         String s = "";
+        if (creationDate!=null){
+            crdate =  df.format(creationDate);
 
+        }
 
         if (name!=null) {s += name + ";";} else {s+=";";}
         if (coordinates.toString()!=null) {s +=coordinates.toString();} else {s+=";";}
@@ -148,7 +156,8 @@ public class Worker implements Comparable<Worker>{
         if (Float.toString(getPerson().getHeight())!=null) {s += Float.toString(getPerson().getHeight()) + ";";} else{s+=";";}
         if (Float.toString(getPerson().getWeight())!=null) {s += Float.toString(getPerson().getWeight()) + ";";} else{s+=";";}
         if (position!=null) {s +=position.toString() + ";";} else {s+=";";}
-        if (id!=null){s += id.toString() + "";} else {s+="lifehaack";}
+        if (id!=null){s += id.toString() + ";";} else {s+="lifehaack;";}
+        if (creationDate!=null){s += crdate.toString() + "";} else {s+=new Date();}
         s+="\r\n";
         return s;
     }

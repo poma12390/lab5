@@ -22,7 +22,7 @@ public class SaveCommand extends BaseCommand{
     protected void Execute(List<String> params, LinkedHashSet<Worker> set) throws IOException {
         OutputStream outputStream = new FileOutputStream("save.csv");
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-        outputStreamWriter.write("name;x;y;salary;startDate;endDate;birthday;height;weight;position;id\r\n");
+        outputStreamWriter.write("name;x;y;salary;startDate;endDate;birthday;height;weight;position;id;creationDate\r\n");
         ParamsChecker.checkParams(0, params);
         Iterator<Worker> it1 = set.iterator();
         String pattern = "dd.MM.yyyy";
