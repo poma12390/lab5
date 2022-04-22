@@ -1,7 +1,7 @@
 package lab5.inputters;
 
 import lab5.exceptions.EmptyStringException;
-import lab5.runners.Position;
+import lab5.common.Position;
 
 import java.io.BufferedReader;
 import java.util.Locale;

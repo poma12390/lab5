@@ -4,7 +4,7 @@ import lab5.exceptions.EndStreamException;
 import lab5.memory.OverflowChecker;
 import lab5.runners.Commands;
 import lab5.runners.ParamsChecker;
-import lab5.runners.Worker;
+import lab5.common.Worker;
 
 import java.io.*;
 import java.util.LinkedHashSet;
@@ -12,7 +12,6 @@ import java.util.List;
 
 import static lab5.inputters.InputUtils.inputString;
 import static lab5.runners.Commands.*;
-import lab5.memory.OverflowChecker;
 
 public class ExecuteScriptCommand extends BaseCommand{
     @Override

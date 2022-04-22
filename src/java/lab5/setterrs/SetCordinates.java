@@ -1,7 +1,7 @@
 package lab5.setterrs;
 
-import lab5.runners.Coordinates;
-import lab5.runners.Worker;
+import lab5.common.Coordinates;
+import lab5.common.Worker;
 import lab5.exceptions.InvalidCoordinatesException;
 
 public class SetCordinates {

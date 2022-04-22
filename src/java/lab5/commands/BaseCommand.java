@@ -3,7 +3,7 @@ package lab5.commands;
 import lab5.exceptions.*;
 import lab5.memory.HistoryWork;
 import lab5.runners.ParamsChecker;
-import lab5.runners.Worker;
+import lab5.common.Worker;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

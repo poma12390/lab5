@@ -2,7 +2,7 @@ package lab5.commands;
 
 import lab5.runners.Commands;
 import lab5.runners.ParamsChecker;
-import lab5.runners.Worker;
+import lab5.common.Worker;
 
 import java.io.IOException;
 import java.util.Collections;

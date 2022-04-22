@@ -1,4 +1,4 @@
-package lab5.runners;
+package lab5.common;
 
 
 import java.text.DateFormat;
@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.Date;
 
 public class Worker implements Comparable<Worker>{
-    public void setStats(String name,Coordinates coordinates,float salary, Date startDate,Date endDate,Position position,Person person) {
+    public void setStats(String name, Coordinates coordinates, float salary, Date startDate, Date endDate, Position position, Person person) {
         this.name = name;
         this.coordinates = coordinates;
         this.salary = salary;

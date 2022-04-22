@@ -1,7 +1,7 @@
 package lab5.setterrs;
 
-import lab5.runners.Person;
-import lab5.runners.Worker;
+import lab5.common.Person;
+import lab5.common.Worker;
 import lab5.exceptions.EmptyStringException;
 import lab5.exceptions.InvalidDateFormatException;
 

@@ -1,5 +1,7 @@
 package lab5.runners;
 
+import lab5.common.Worker;
+
 import java.io.*;
 import java.util.*;
 

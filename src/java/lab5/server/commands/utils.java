@@ -1,10 +1,8 @@
 package lab5.server.commands;
 
-import lab5.runners.Worker;
+import lab5.common.Worker;
 
-import java.util.Collection;
 import java.util.LinkedHashSet;
-import java.util.List;
 
 public class utils {
     LinkedHashSet<Worker> set = new LinkedHashSet<>();

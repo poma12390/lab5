@@ -1,4 +1,4 @@
-package lab5.runners;
+package lab5.common;
 
 public class Coordinates {
     public void setXY(long x, Integer y) {

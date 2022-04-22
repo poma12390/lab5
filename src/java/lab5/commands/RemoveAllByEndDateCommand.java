@@ -3,7 +3,7 @@ package lab5.commands;
 import lab5.exceptions.InvalidDateFormatException;
 import lab5.exceptions.InvalidEndDateException;
 import lab5.runners.ParamsChecker;
-import lab5.runners.Worker;
+import lab5.common.Worker;
 import lab5.setterrs.SetData;
 
 import java.text.ParseException;

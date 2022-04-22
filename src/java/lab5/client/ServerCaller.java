@@ -1,9 +1,8 @@
 package lab5.client;
 
-import lab5.runners.Worker;
+import lab5.common.Worker;
 import lab5.server.ServerRunner;
 
-import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +32,9 @@ public class ServerCaller {
 
         Worker bum = new Worker(); // response -> result
         return null;
+    }
+    public void send (Object command){
+
     }
 
 }

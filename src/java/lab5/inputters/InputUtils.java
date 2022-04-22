@@ -1,6 +1,6 @@
 package lab5.inputters;
 
-import lab5.runners.Position;
+import lab5.common.Position;
 
 import java.time.ZonedDateTime;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package lab5.runners;
+package lab5.common;
 
 import java.time.ZonedDateTime;
 

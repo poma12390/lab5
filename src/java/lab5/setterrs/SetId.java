@@ -2,9 +2,8 @@ package lab5.setterrs;
 
 import lab5.exceptions.DublicateIdException;
 import lab5.exceptions.EmptyStringException;
-import lab5.exceptions.InvalidNumberException;
 import lab5.runners.Commands;
-import lab5.runners.Worker;
+import lab5.common.Worker;
 
 public class SetId {
     public static void setId(String id, Worker bum) throws EmptyStringException, DublicateIdException {
