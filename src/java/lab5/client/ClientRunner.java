@@ -1,9 +1,9 @@
 package lab5.client;
-
-import lab5.client.commands.Show2;
+import lab5.exceptions.ServerNotFoundException;
 import lab5.server.ServerRunner;
 
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 
 public class ClientRunner {
     public static void main(String[] args) {
@@ -11,8 +11,13 @@ public class ClientRunner {
         ServerRunner server = new ServerRunner();
         ServerReciever serverReciever = new ServerReciever();
         ServerCaller serverCaller = new ServerCaller(server,serverReciever);
-        Show2 show2 = new Show2();
-        show2.runCommand(serverCaller);
+        String input = "";
+        try {
+        serverReciever.receive(input.getBytes(StandardCharsets.UTF_8));}
+        catch (ServerNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+
 
     }
 }
