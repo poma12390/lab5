@@ -1,14 +1,11 @@
 package lab5.client;
 import lab5.common.Worker;
-import lab5.common.dto.Refactor;
+import lab5.common.Refactor;
 import lab5.common.dto.WorkerDto;
 import lab5.exceptions.ServerNotFoundException;
 import lab5.server.ServerRunner;
 
-import java.io.*;
-import java.net.*;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 
 public class ClientRunner {
     public static void main(String[] args) {

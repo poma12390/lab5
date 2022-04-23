@@ -1,6 +1,7 @@
-package lab5.common.dto;
+package lab5.common;
 
 import lab5.common.Worker;
+import lab5.common.dto.WorkerDto;
 
 import java.io.*;
 
