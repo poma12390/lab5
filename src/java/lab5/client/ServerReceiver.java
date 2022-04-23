@@ -1,9 +1,5 @@
 package lab5.client;
 
-import lab5.exceptions.ServerNotFoundException;
-
-import java.io.IOException;
-
 public class ServerReceiver {
 
     private final ServerCaller serverReceiver;

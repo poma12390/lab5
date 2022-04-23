@@ -1,12 +1,6 @@
 package lab5.client;
 
-import lab5.exceptions.ServerNotFoundException;
 import lab5.server.ClientReceiver;
-
-import java.io.IOException;
-import java.net.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.DatagramChannel;
 
 public class ServerCaller {
 

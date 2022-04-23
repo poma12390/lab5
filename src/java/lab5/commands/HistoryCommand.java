@@ -1,7 +1,7 @@
 package lab5.commands;
 
-import lab5.memory.HistoryWork;
-import lab5.runners.ParamsChecker;
+import lab5.client.memory.HistoryWork;
+import lab5.client.commands.ParamsChecker;
 import lab5.common.Worker;
 
 import java.util.ArrayList;

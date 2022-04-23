@@ -2,7 +2,7 @@ package lab5.setterrs;
 
 import lab5.common.Coordinates;
 import lab5.common.Worker;
-import lab5.exceptions.InvalidCoordinatesException;
+import lab5.common.exceptions.InvalidCoordinatesException;
 
 public class SetCordinates {
     public static void setcordinates(String x, String y, Worker bum) throws InvalidCoordinatesException {

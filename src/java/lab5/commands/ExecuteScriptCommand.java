@@ -1,16 +1,16 @@
 package lab5.commands;
 
-import lab5.exceptions.EndStreamException;
-import lab5.memory.OverflowChecker;
+import lab5.common.exceptions.EndStreamException;
+import lab5.client.memory.OverflowChecker;
 import lab5.runners.Commands;
-import lab5.runners.ParamsChecker;
+import lab5.client.commands.ParamsChecker;
 import lab5.common.Worker;
 
 import java.io.*;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import static lab5.inputters.InputUtils.inputString;
+import static lab5.client.inputters.InputUtils.inputString;
 import static lab5.runners.Commands.*;
 
 public class ExecuteScriptCommand extends BaseCommand{

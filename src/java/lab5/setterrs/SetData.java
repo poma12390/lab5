@@ -1,8 +1,8 @@
 package lab5.setterrs;
 
-import lab5.exceptions.InvalidEndDateException;
+import lab5.common.exceptions.InvalidEndDateException;
 import lab5.common.Worker;
-import lab5.exceptions.InvalidDateFormatException;
+import lab5.common.exceptions.InvalidDateFormatException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

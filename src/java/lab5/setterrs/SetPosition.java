@@ -2,7 +2,7 @@ package lab5.setterrs;
 
 import lab5.common.Position;
 import lab5.common.Worker;
-import lab5.exceptions.EmptyStringException;
+import lab5.common.exceptions.EmptyStringException;
 
 import java.util.Locale;
 

@@ -1,5 +1,6 @@
 package lab5.common;
 
+import lab5.common.dto.CommandRequestDto;
 import lab5.common.dto.WorkerDto;
 
 import java.io.ByteArrayInputStream;
@@ -41,6 +42,14 @@ public class Transformer {
         ByteArrayInputStream bis = new ByteArrayInputStream(arr);
         try(ObjectInput in = new ObjectInputStream(bis)) {
             return in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public CommandRequestDto<? extends Serializable> Testdes(byte[] arr){
+        ByteArrayInputStream bis = new ByteArrayInputStream(arr);
+        try(ObjectInput in = new ObjectInputStream(bis)) {
+            return (CommandRequestDto<? extends Serializable>) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

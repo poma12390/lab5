@@ -5,8 +5,8 @@ import lab5.common.Coordinates;
 import lab5.common.Person;
 import lab5.common.Position;
 import lab5.common.Worker;
-import lab5.exceptions.*;
-import lab5.memory.HistoryWork;
+import lab5.common.exceptions.*;
+import lab5.client.memory.HistoryWork;
 import lab5.setterrs.*;
 
 import java.io.*;
@@ -16,7 +16,7 @@ import java.text.ParseException;
 import java.time.ZonedDateTime;
 import java.util.*;
 
-import static lab5.inputters.InputUtils.*;
+import static lab5.client.inputters.InputUtils.*;
 
 
 public class Commands {

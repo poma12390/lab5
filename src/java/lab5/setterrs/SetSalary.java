@@ -1,7 +1,7 @@
 package lab5.setterrs;
 
 import lab5.common.Worker;
-import lab5.exceptions.InvalidSalaryException;
+import lab5.common.exceptions.InvalidSalaryException;
 
 public class SetSalary {
     public static void setSalary(String salary, Worker bum) throws InvalidSalaryException, NumberFormatException{

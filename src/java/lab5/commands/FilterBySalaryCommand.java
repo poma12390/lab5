@@ -1,7 +1,7 @@
 package lab5.commands;
 
-import lab5.exceptions.InvalidSalaryException;
-import lab5.runners.ParamsChecker;
+import lab5.common.exceptions.InvalidSalaryException;
+import lab5.client.commands.ParamsChecker;
 import lab5.common.Worker;
 import lab5.setterrs.SetSalary;
 

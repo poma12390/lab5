@@ -7,7 +7,7 @@ import lab5.common.Position;
 import java.io.Serializable;
 import java.util.Date;
 
-public class WorkerDto implements Serializable {
+public class WorkerDto extends AbstractDto {
     private Integer id;
     private String name;
     private Coordinates coordinates;

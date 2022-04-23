@@ -1,7 +1,7 @@
 package lab5.setterrs;
 
-import lab5.exceptions.DublicateIdException;
-import lab5.exceptions.EmptyStringException;
+import lab5.common.exceptions.DublicateIdException;
+import lab5.common.exceptions.EmptyStringException;
 import lab5.runners.Commands;
 import lab5.common.Worker;
 
