@@ -11,10 +11,10 @@ public class WorkerDto implements Serializable {
     private Integer id;
     private String name;
     private Coordinates coordinates;
-    private java.util.Date creationDate;
+    private Date creationDate;
     private float salary;
-    private java.util.Date startDate;
-    private java.util.Date endDate;
+    private Date startDate;
+    private Date endDate;
     private Position position;
     private Person person;
 

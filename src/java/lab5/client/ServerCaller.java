@@ -1,40 +1,48 @@
 package lab5.client;
 
-import lab5.common.Worker;
-import lab5.server.ServerRunner;
+import lab5.exceptions.ServerNotFoundException;
+import lab5.server.ClientReceiver;
 
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.net.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
 
 public class ServerCaller {
 
-    private final ServerRunner serverRunner;
-    private final ServerReciever serverReciever;
-
-    {
-
-    }
-    public ServerCaller(ServerRunner serverRunner, ServerReciever serverReciever) {
-        this.serverRunner = serverRunner;
-        this.serverReciever = serverReciever;
+    public void sendToServer(byte[] test) {
+        ClientReceiver clientReceiverOnServer = new ClientReceiver();
+        clientReceiverOnServer.requestFromClient(test);
     }
 
-    public List<Worker> getCollection(){
-       // byte[] request = new byte[10];// Вызвать процедуру упаковки команды getWorkers
-        byte[] response = serverReciever.receive("getCollectionCommand".getBytes(StandardCharsets.UTF_8));
-        List<Worker> result = new ArrayList<>();// вызвать процедуру распаковки из response в result
-        return result;
-    }
-    public Worker getWorker(){
-        byte[] request = new byte[10];
-        serverRunner.call("getWorkerCommand".getBytes(StandardCharsets.UTF_8));
+//    DatagramChannel dc;
+//    ByteBuffer buf;
+//    ByteBuffer buf1;
+//    InetAddress host;
+//    int port = 1290;
+//    SocketAddress addr;
+//
+//    int len;
+//    public byte[] sendToServer(byte[] arr){
+//        try {
+//            host = InetAddress.getLocalHost();
+//            dc = DatagramChannel.open();
+//
+//        } catch (UnknownHostException e) {
+//            System.out.println("NO HOST");
+//            throw new RuntimeException(e);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        buf = ByteBuffer.wrap(arr);
+//        try {
+//            addr = new InetSocketAddress(host,port);
+//            dc.send(buf, addr);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        len = arr.length;
+//        return catcher();
+//    }
 
-        Worker bum = new Worker(); // response -> result
-        return null;
-    }
-    public void send (Object command){
-
-    }
-
-}
+ }

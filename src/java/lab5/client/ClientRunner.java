@@ -1,38 +1,62 @@
 package lab5.client;
 import lab5.common.Worker;
-import lab5.common.Refactor;
+import lab5.common.Transformer;
+import lab5.common.dto.CommandRequestDto;
 import lab5.common.dto.WorkerDto;
 import lab5.exceptions.ServerNotFoundException;
-import lab5.server.ServerRunner;
 
 import java.nio.ByteBuffer;
 
 public class ClientRunner {
     public static void main(String[] args) {
-        ServerRunner server = new ServerRunner();
-        ServerReciever serverReciever = new ServerReciever();
-        ServerCaller serverCaller = new ServerCaller(server,serverReciever);
-        Refactor refactor = new Refactor();
+
+
         Worker bum = new Worker();
+        WorkerDto workerDto = Transformer.WorkerToWorkerDto(bum);
+        CommandRequestDto<WorkerDto> commandRequestDto = new CommandRequestDto<>("add", workerDto);
+
+
+
+
+
+
+        new Thread(() -> {
+
+            // выполнение в отдельном потоке
+
+        }).start();
+
+
+
+
+
+
+
+
+
+        Transformer transformer = new Transformer();
         bum.setName("maaan"); bum.setId(1123);
         byte[] a = new byte[2048];
 
 
 
-        WorkerDto man = Refactor.WorkerToWorkerDto(bum);
+        WorkerDto man = Transformer.WorkerToWorkerDto(bum);
         ByteBuffer buf = ByteBuffer.wrap(a);
-        buf.put(refactor.Serialize(man));
+        buf.put(transformer.Serialize(man));
         byte[] test;
-        test = refactor.Serialize(man);
-        Object test1 = refactor.DeSerialize(test);
+        test = transformer.Serialize(man);
+        Object test1 = transformer.DeSerialize(test);
         if (test1.getClass() == man.getClass()){
             System.out.println("whee");
         }
 
+
+        ServerCaller serverCaller = new ServerCaller();
+
         String input = "";
         try {
 
-            serverReciever.receive(test);}
+            serverCaller.sendToServer(test);}
         catch (ServerNotFoundException e){
             System.out.println(e.getMessage());
         }

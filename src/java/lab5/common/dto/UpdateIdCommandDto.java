@@ -1,15 +1,13 @@
 package lab5.common.dto;
 
-import java.io.Serializable;
-
 public class UpdateIdCommandDto extends AbstractDto{
-    private WorkerDto bum;
+    private int workerId;
 
-    public WorkerDto getBum() {
-        return bum;
+    public int getWorkerId() {
+        return workerId;
     }
 
-    public void setBum(WorkerDto bum) {
-        this.bum = bum;
+    public void setWorkerId(int workerId) {
+        this.workerId = workerId;
     }
 }
