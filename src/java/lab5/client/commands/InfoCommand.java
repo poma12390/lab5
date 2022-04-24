@@ -1,7 +1,5 @@
 package lab5.client.commands;
 
-import lab5.client.ServerCaller;
-import lab5.common.Transformer;
 import lab5.common.dto.CommandRequestDto;
 import lab5.common.dto.InfoCommandDto;
 
@@ -14,7 +12,7 @@ public class InfoCommand extends BaseCommand {
      */
 
     @Override
-    protected void Execute(List<String> params, ServerCaller serverCaller, Transformer transformer) {
+    protected void Execute(List<String> params) {
         ParamsChecker.checkParams(0, params);
         InfoCommandDto dto = new InfoCommandDto();
         CommandRequestDto <InfoCommandDto> crd = new CommandRequestDto<>("info", dto);

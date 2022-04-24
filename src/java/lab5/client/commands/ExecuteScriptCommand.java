@@ -1,7 +1,5 @@
 package lab5.client.commands;
 
-import lab5.client.ServerCaller;
-import lab5.common.Transformer;
 import lab5.common.exceptions.EndStreamException;
 import lab5.client.memory.OverflowChecker;
 
@@ -27,7 +25,7 @@ public class ExecuteScriptCommand extends BaseCommand {
      * run all commands from file
      */
     @Override
-    protected void Execute(List<String> params, ServerCaller serverCaller, Transformer transformer) {
+    protected void Execute(List<String> params) {
         ParamsChecker.checkParams(1, params);
 
         String fileName = params.get(0);

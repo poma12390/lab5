@@ -19,6 +19,12 @@ public class ServerRunner {
 
 
 
+        System.out.println("Нажмите Ctrl+C для закрытия сервера");
+        // TODO: ждать CTRL+C
+
+        // TODO: после Ctrl+C вызвать сохранение коллекции
+
+
 
         ClientReceiver receiver = new ClientReceiver();
         receiver.run();

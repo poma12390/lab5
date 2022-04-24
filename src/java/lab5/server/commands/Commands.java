@@ -19,7 +19,6 @@ import java.util.*;
 public class Commands {
     public static boolean blockPrompts = false;
     private static ArrayList<Integer> ids = new ArrayList<Integer>();
-    public static BufferedReader currentBufferedReader;
     private static LinkedHashSet<Worker> workers = new LinkedHashSet<>();
 
     public static LinkedHashSet<Worker> getWorkersSet() {
@@ -36,9 +35,6 @@ public class Commands {
 
     public static boolean isFileExecuted = false;
 
-    public static void setCurrentBufferedReader(BufferedReader currentBufferedReader) {
-        Commands.currentBufferedReader = currentBufferedReader;
-    }
     private static final List<lab5.server.commands.BaseCommand> commands = Arrays.asList(
             new ShowCommand(),
             new ExitCommand(),
@@ -60,11 +56,6 @@ public class Commands {
     public static void temporaryStart(){
         String start = open("C:\\Users\\pomat\\IdeaProjects\\lab5\\save.csv");
         begin(start, workers);
-
-        InputStream inputStream = System.in;
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        setCurrentBufferedReader(bufferedReader);
     }
 
     /**

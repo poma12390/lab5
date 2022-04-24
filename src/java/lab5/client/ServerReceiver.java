@@ -8,19 +8,16 @@ import java.io.Serializable;
 
 public class ServerReceiver {
 
+    private byte[] requestContent;
+
     public void requestFromServer(byte[] requestContent){
-
-
-
-        // TODO: десериализация requestContent -> commandDto
-        // вместо этого пока создадим "в лоб"
-        Commands commands = new Commands();
-        Transformer transformer = new Transformer();
-        String request = (String)transformer.DeSerialize(requestContent);
-        System.out.println(request);
-        //CommandRequestDto
-
+        this.requestContent = requestContent;
     }
+
+    public byte[] receiveFromServer() {
+        return requestContent;
+    }
+
 
 //    public List<Worker> getCollection(){
 //       // byte[] request = new byte[10];// Вызвать процедуру упаковки команды getWorkers
@@ -77,6 +74,4 @@ public class ServerReceiver {
             throw new RuntimeException(e);
         }
     }
-
-
 }

@@ -27,7 +27,7 @@ public class ShowCommand extends BaseCommand {
         if (set.size() == 0) {
                 String except = "collection is empty!";
 
-                clientCaller.sendToClient(transformer.Serialize(except));
+                clientCaller.sendToClient(transformer.Serialize(except)); ///////////
                 throw new EmptyCollectionException();
             }
 
