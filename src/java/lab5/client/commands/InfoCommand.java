@@ -14,12 +14,11 @@ public class InfoCommand extends BaseCommand {
      */
 
     @Override
-    protected void Execute(List<String> params) {
+    protected void Execute(List<String> params, ServerCaller serverCaller, Transformer transformer) {
         ParamsChecker.checkParams(0, params);
         InfoCommandDto dto = new InfoCommandDto();
         CommandRequestDto <InfoCommandDto> crd = new CommandRequestDto<>("info", dto);
-        ServerCaller serverCaller = new ServerCaller();
-        Transformer transformer = new Transformer();
+
         serverCaller.sendToServer(transformer.Serialize(crd));
     }
 }

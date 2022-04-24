@@ -1,5 +1,7 @@
 package lab5.client.commands;
 
+import lab5.client.ServerCaller;
+import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.exceptions.InvalidDateFormatException;
 import lab5.common.exceptions.InvalidEndDateException;
@@ -12,7 +14,7 @@ import java.util.List;
 
 public class AddCommand extends BaseCommand {
     @Override
-    protected void Execute(List<String> params) throws IOException, InvalidSalaryException, InvalidDateFormatException, ParseException, InvalidEndDateException {
+    protected void Execute(List<String> params, ServerCaller serverCaller, Transformer transformer) throws IOException, InvalidSalaryException, InvalidDateFormatException, ParseException, InvalidEndDateException {
         ParamsChecker.checkParams(0, params);
         Worker bum = new Worker();
         Commands.updateAll(bum);

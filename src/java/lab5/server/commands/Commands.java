@@ -1,7 +1,5 @@
 package lab5.server.commands;
 
-import lab5.server.*;
-import lab5.commands.*;
 import lab5.common.Person;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
@@ -14,22 +12,18 @@ import lab5.setterrs.*;
 import java.io.*;
 
 import java.text.ParseException;
-import java.time.ZonedDateTime;
 import java.util.*;
 
-import static lab5.client.inputters.InputUtils.*;
 
 
 public class Commands {
     private static ArrayList<Integer> ids = new ArrayList<Integer>();
-
     public static BufferedReader currentBufferedReader;
-
     public LinkedHashSet<Worker> getSet() {
         return set;
     }
 
-    private LinkedHashSet<Worker> set = new LinkedHashSet<>();
+    private final LinkedHashSet<Worker> set = new LinkedHashSet<>();
     public static boolean blockPrompts = false;
 
     public static void setBlockPrompts(boolean blockPrompts) {
@@ -45,7 +39,7 @@ public class Commands {
     public static void setCurrentBufferedReader(BufferedReader currentBufferedReader) {
         Commands.currentBufferedReader = currentBufferedReader;
     }
-    private static List<lab5.server.commands.BaseCommand> commands = Arrays.asList(
+    private static final List<lab5.server.commands.BaseCommand> commands = Arrays.asList(
             new ShowCommand(),
             new ExitCommand(),
             new InfoCommand(),
@@ -65,8 +59,9 @@ public class Commands {
 
     public static void temporaryStart(){
         Commands cs = new Commands();
-        String start = lab5.runners.Commands.open("C:\\Users\\pomat\\IdeaProjects\\lab5\\save.csv");
-        lab5.runners.Commands.begin(start, cs.set);
+        String start = open("C:\\Users\\pomat\\IdeaProjects\\lab5\\save.csv");
+        begin(start, cs.getSet());
+
         InputStream inputStream = System.in;
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -163,7 +158,7 @@ public class Commands {
         for (int i = 1; i < str.length; i++) {
             String[] stats = str[i].split(";");
             try {
-                worker = Commands.upload(stats);
+                worker = upload(stats);
                 if (worker.getPosition() == null){
                     throw new EmptyCollectionException();
                 }
@@ -205,19 +200,18 @@ public class Commands {
 
     static boolean test = true;
     public static void runCommandFromString(LinkedHashSet<Worker> workers, String input, CommandRequestDto<? extends Serializable> params) {
-
+        Commands cs = new Commands();
         try {
             test = false;
             String[] items = input.split(" ");
             String cmd = items[0].toLowerCase();
 
             //runCommand(workers, cmd, params);
-            runCommand2(workers, cmd, params);
+            runCommand2(cs.getSet(), cmd, params);
             if (!test){
                 System.out.println("no such method");
             }
         } catch (NullPointerException | NoSuchElementException e) {
-            Commands cs = new Commands();
             cs.funExit();
         } catch (Exception e){
             e.printStackTrace();

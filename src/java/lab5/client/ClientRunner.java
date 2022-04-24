@@ -5,7 +5,6 @@ import lab5.common.Transformer;
 import lab5.common.dto.AddCommandDto;
 import lab5.common.dto.CommandRequestDto;
 import lab5.common.dto.WorkerDto;
-import lab5.common.exceptions.ServerNotFoundException;
 import lab5.server.commands.Commands;
 
 import java.nio.ByteBuffer;
@@ -14,7 +13,7 @@ public class ClientRunner {
     public static void main(String[] args) {
 
         String input = "show";
-        //Commands.temporaryStart();//типо запустил сервер инициализация всего
+        Commands.temporaryStart();//типо запустил сервер инициализация всего
         Worker bum = new Worker();
         WorkerDto workerDto = Transformer.WorkerToWorkerDto(bum);
         CommandRequestDto<WorkerDto> commandRequestDto = new CommandRequestDto<>("add", workerDto);

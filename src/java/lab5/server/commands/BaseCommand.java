@@ -2,9 +2,11 @@ package lab5.server.commands;
 
 import lab5.client.commands.ParamsChecker;
 import lab5.client.memory.HistoryWork;
+import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
 import lab5.common.exceptions.*;
+import lab5.server.ClientCaller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,7 +18,8 @@ import java.util.List;
 public abstract class BaseCommand {
 
     private static final String SUFFIX = "Command";
-
+    Transformer transformer = new Transformer();
+    ClientCaller clientCaller = new ClientCaller();
     private final String name;
 
     public BaseCommand() {
@@ -36,7 +39,7 @@ public abstract class BaseCommand {
         return 0;
     }
 
-    protected abstract void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set) throws IOException, InvalidSalaryException, InvalidDateFormatException, ParseException, InvalidEndDateException;
+    protected abstract void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) throws IOException, InvalidSalaryException, InvalidDateFormatException, ParseException, InvalidEndDateException;
 
     public String getName() {
         return name;
@@ -44,7 +47,7 @@ public abstract class BaseCommand {
 
     public void ExecuteCommand(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set) {
         try {
-            Execute(params, set);
+            Execute(params, set, transformer, clientCaller);
             HistoryWork.historyAdd(name);
         } catch (InvalidEndDateException | FileNotFoundException | MissedCommandArgumentException | EmptyCollectionException | InvalidSalaryException | InvalidDateFormatException | RecursiveScriptExecuteException e){
             System.out.println(e.getMessage());

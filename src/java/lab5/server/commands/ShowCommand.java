@@ -23,11 +23,10 @@ public class ShowCommand extends BaseCommand {
      */
 
     @Override
-    protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set) {
-            if (set.size() == 0) {
+    protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) {
+        if (set.size() == 0) {
                 String except = "collection is empty!";
-                Transformer transformer = new Transformer();
-                ClientCaller clientCaller = new ClientCaller();
+
                 clientCaller.sendToClient(transformer.Serialize(except));
                 throw new EmptyCollectionException();
             }

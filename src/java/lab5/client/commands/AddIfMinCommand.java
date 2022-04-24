@@ -1,5 +1,7 @@
 package lab5.client.commands;
 
+import lab5.client.ServerCaller;
+import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.runners.Commands;
 
@@ -18,7 +20,7 @@ public class AddIfMinCommand extends BaseCommand {
      */
 
     @Override
-    protected void Execute(List<String> params) throws IOException {
+    protected void Execute(List<String> params, ServerCaller serverCaller, Transformer transformer) throws IOException {
         ParamsChecker.checkParams(0, params);
         Worker bum = new Worker();
         Commands.updateAll(bum);

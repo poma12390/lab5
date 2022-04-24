@@ -1,8 +1,10 @@
 package lab5.server.commands;
 
 import lab5.client.commands.ParamsChecker;
+import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
+import lab5.server.ClientCaller;
 
 import java.io.*;
 import java.text.DateFormat;
@@ -20,7 +22,7 @@ public class SaveCommand extends BaseCommand {
      */
 
     @Override
-    protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set) throws IOException {
+    protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) throws IOException {
         OutputStream outputStream = new FileOutputStream("save.csv");
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
         outputStreamWriter.write("name;x;y;salary;startDate;endDate;birthday;height;weight;position;id;creationDate\r\n");

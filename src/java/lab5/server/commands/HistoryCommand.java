@@ -2,8 +2,10 @@ package lab5.server.commands;
 
 import lab5.client.commands.ParamsChecker;
 import lab5.client.memory.HistoryWork;
+import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
+import lab5.server.ClientCaller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +20,6 @@ public class HistoryCommand extends BaseCommand {
 
 
     @Override
-    protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set) {
+    protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) {
     }
 }

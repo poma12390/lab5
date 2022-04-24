@@ -1,5 +1,7 @@
 package lab5.client.commands;
 
+import lab5.client.ServerCaller;
+import lab5.common.Transformer;
 import lab5.common.exceptions.*;
 
 import java.io.FileNotFoundException;
@@ -11,6 +13,8 @@ public abstract class BaseCommand {
 
     private static final String SUFFIX = "Command";
 
+    ServerCaller serverCaller = new ServerCaller();
+    Transformer transformer = new Transformer();
     private final String name;
 
     public BaseCommand() {
@@ -30,7 +34,7 @@ public abstract class BaseCommand {
         return 0;
     }
 
-    protected abstract void Execute(List<String> params) throws IOException, InvalidSalaryException, InvalidDateFormatException, ParseException, InvalidEndDateException;
+    protected abstract void Execute(List<String> params, ServerCaller serverCaller, Transformer transformer) throws IOException, InvalidSalaryException, InvalidDateFormatException, ParseException, InvalidEndDateException;
 
     public String getName() {
         return name;
@@ -39,7 +43,7 @@ public abstract class BaseCommand {
     public void ExecuteCommand(List<String> params) {
         //ParamsChecker.checkParams(getCommandParamsCount(), params);
         try {
-            Execute(params);
+            Execute(params, serverCaller, transformer);
         } catch (InvalidEndDateException | FileNotFoundException | MissedCommandArgumentException | EmptyCollectionException | InvalidSalaryException | InvalidDateFormatException | RecursiveScriptExecuteException e){
             System.out.println(e.getMessage());
         } catch (IOException e) {

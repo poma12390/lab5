@@ -16,13 +16,11 @@ public class ShowCommand extends BaseCommand {
      */
 
     @Override
-    protected void Execute(List<String> params) {
+    protected void Execute(List<String> params, ServerCaller serverCaller, Transformer transformer) {
             ParamsChecker.checkParams(0, params);
             ShowCommandDto dto= new ShowCommandDto();
-        CommandRequestDto<ShowCommandDto> crd = new CommandRequestDto<>("show", dto);
-        ServerCaller serverCaller = new ServerCaller();
-        Transformer transformer = new Transformer();
-        serverCaller.sendToServer(transformer.Serialize(crd));
+            CommandRequestDto<ShowCommandDto> crd = new CommandRequestDto<>("show", dto);
+            serverCaller.sendToServer(transformer.Serialize(crd));
 
     }
 }

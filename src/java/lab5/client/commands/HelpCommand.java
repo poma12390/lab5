@@ -1,5 +1,8 @@
 package lab5.client.commands;
 
+import lab5.client.ServerCaller;
+import lab5.common.Transformer;
+
 import java.util.List;
 
 
@@ -10,7 +13,7 @@ public class HelpCommand extends BaseCommand {
      */
 
     @Override
-    protected void Execute(List<String> params) {
+    protected void Execute(List<String> params, ServerCaller serverCaller, Transformer transformer) {
         ParamsChecker.checkParams(0, params);
         System.out.println("help : вывести справку по доступным командам\n" +
                 "info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)\n" +
