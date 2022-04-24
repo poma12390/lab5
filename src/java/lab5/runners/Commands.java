@@ -240,7 +240,6 @@ public class Commands {
 
     static boolean test = true;
     public static void runCommandFromString(LinkedHashSet<Worker> workers, String input) {
-        lab5.server.commands.Commands cs = new lab5.server.commands.Commands();
         try {
             test = false;
             String[] items = input.split(" ");
@@ -251,7 +250,7 @@ public class Commands {
             }
 
             //runCommand(workers, cmd, params);
-            runCommand2(cs.getSet(), cmd, params);
+            runCommand2(workers, cmd, params);
             if (!test){
                 System.out.println("no such method");
             }

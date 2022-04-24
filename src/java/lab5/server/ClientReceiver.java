@@ -23,13 +23,12 @@ public class ClientReceiver {
 
         // TODO: десериализация requestContent -> commandDto
         // вместо этого пока создадим "в лоб"
-        Commands commands = new Commands();
         Transformer transformer = new Transformer();
         CommandRequestDto<? extends Serializable> requestObject = (CommandRequestDto<? extends Serializable>) transformer.DeSerialize(requestContent);
         String name = requestObject.getCommandName();
         System.out.println(name + " server");
-        System.out.println(commands.getSet());
-        Commands.runCommandFromString(commands.getSet(), name, requestObject);
+        System.out.println(Commands.getWorkersSet());
+        Commands.runCommandFromString(Commands.getWorkersSet(), name, requestObject);
         //CommandRequestDto
 
     }

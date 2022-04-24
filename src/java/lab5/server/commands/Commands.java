@@ -17,14 +17,14 @@ import java.util.*;
 
 
 public class Commands {
+    public static boolean blockPrompts = false;
     private static ArrayList<Integer> ids = new ArrayList<Integer>();
     public static BufferedReader currentBufferedReader;
-    public LinkedHashSet<Worker> getSet() {
-        return set;
-    }
+    private static LinkedHashSet<Worker> workers = new LinkedHashSet<>();
 
-    private final LinkedHashSet<Worker> set = new LinkedHashSet<>();
-    public static boolean blockPrompts = false;
+    public static LinkedHashSet<Worker> getWorkersSet() {
+        return workers;
+    }
 
     public static void setBlockPrompts(boolean blockPrompts) {
         Commands.blockPrompts = blockPrompts;
@@ -58,9 +58,8 @@ public class Commands {
     );
 
     public static void temporaryStart(){
-        Commands cs = new Commands();
         String start = open("C:\\Users\\pomat\\IdeaProjects\\lab5\\save.csv");
-        begin(start, cs.getSet());
+        begin(start, workers);
 
         InputStream inputStream = System.in;
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -200,19 +199,18 @@ public class Commands {
 
     static boolean test = true;
     public static void runCommandFromString(LinkedHashSet<Worker> workers, String input, CommandRequestDto<? extends Serializable> params) {
-        Commands cs = new Commands();
         try {
             test = false;
             String[] items = input.split(" ");
             String cmd = items[0].toLowerCase();
 
             //runCommand(workers, cmd, params);
-            runCommand2(cs.getSet(), cmd, params);
+            runCommand2(workers, cmd, params);
             if (!test){
                 System.out.println("no such method");
             }
         } catch (NullPointerException | NoSuchElementException e) {
-            cs.funExit();
+            funExit();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -238,8 +236,8 @@ public class Commands {
         }
     }
 
-    public void funExit(){
-        runCommandFromString(this.set, "save", null);
+    public static void funExit(){
+        runCommandFromString(workers, "save", null);
         System.out.println("для выхода я написал комманду exit");
         System.out.println(" +\"\"\"\"\"+ ");
         System.out.println("[| o o |]");
