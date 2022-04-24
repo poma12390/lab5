@@ -1,5 +1,6 @@
 package lab5.client.commands;
 
+import lab5.client.ServerReceiver;
 import lab5.common.dto.CommandRequestDto;
 import lab5.common.dto.ShowCommandDto;
 
@@ -20,8 +21,9 @@ public class ShowCommand extends BaseCommand {
         CommandRequestDto<ShowCommandDto> crd = new CommandRequestDto<>("show", dto);
         serverCaller.sendToServer(transformer.Serialize(crd));
 
-        byte[] buf = serverReceiver.receiveFromServer();
-        Object response = transformer.DeSerialize(buf);
+        byte[] buf = ServerReceiver.receiveFromServer();
+        String response = (String) transformer.DeSerialize(buf);
+        System.out.println(response);
 
     }
 }

@@ -31,15 +31,20 @@ public class ShowCommand extends BaseCommand {
                 throw new EmptyCollectionException();
             }
 
+        else{
+            String collection="";
             Iterator<Worker> it1 = set.iterator();
             String pattern = "dd.MM.yyyy";
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             DateFormat df = new SimpleDateFormat(pattern);
             while (it1.hasNext()) {
                 Worker bum = it1.next();
-                System.out.println(bum.toString());
+                collection = collection+bum.toString();
                 //outputStreamWriter.write((bum.getName()+";"+Long.toString(bum.getCoordinates().getX())+";"+Integer.toString(bum.getCoordinates().getY())+";"+Float.toString(bum.getSalary())+";"+df.format(bum.getStartDate())+";"+df.format(bum.getEndDate())+";"+bum.getPerson().getBirthday().format(formatter)+";"+Float.toString(bum.getPerson().getHeight())+";"+Float.toString(bum.getPerson().getWeight())+";"+bum.getPosition().toString())+"\r\n");
             }
+            clientCaller.sendToClient(transformer.Serialize(collection));
+
+        }
             //Commands.show(params, set);
 
     }

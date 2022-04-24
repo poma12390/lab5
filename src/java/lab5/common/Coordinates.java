@@ -1,6 +1,7 @@
 package lab5.common;
 
-public class Coordinates {
+
+public class Coordinates{
     public void setXY(long x, Integer y) {
         this.x = x;
         this.y = y;

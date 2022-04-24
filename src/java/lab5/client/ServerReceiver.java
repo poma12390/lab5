@@ -1,25 +1,20 @@
 package lab5.client;
 
-import lab5.common.Transformer;
-import lab5.common.dto.CommandRequestDto;
-import lab5.server.commands.Commands;
 
-import java.io.Serializable;
 
 public class ServerReceiver {
 
-    private byte[] requestContent;
+    private static byte[] requestContent;
 
     public void requestFromServer(byte[] requestContent){
-        this.requestContent = requestContent;
+        ServerReceiver.requestContent = requestContent;
     }
 
-    public byte[] receiveFromServer() {
+    public static byte[] receiveFromServer() {
         return requestContent;
     }
 
-
-//    public List<Worker> getCollection(){
+    //    public List<Worker> getCollection(){
 //       // byte[] request = new byte[10];// Вызвать процедуру упаковки команды getWorkers
 //        byte[] response = serverReciever.receive("getCollectionCommand".getBytes(StandardCharsets.UTF_8));
 //        List<Worker> result = new ArrayList<>();// вызвать процедуру распаковки из response в result

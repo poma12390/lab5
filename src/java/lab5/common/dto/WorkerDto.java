@@ -10,13 +10,13 @@ import java.util.Date;
 public class WorkerDto extends AbstractDto {
     private Integer id;
     private String name;
-    private Coordinates coordinates;
+    private CoordinatesDto coordinates;
     private Date creationDate;
     private float salary;
     private Date startDate;
     private Date endDate;
     private Position position;
-    private Person person;
+    private PersonDto person;
 
     public Integer getId() {
         return id;
@@ -34,11 +34,11 @@ public class WorkerDto extends AbstractDto {
         this.name = name;
     }
 
-    public Coordinates getCoordinates() {
+    public CoordinatesDto getCoordinates() {
         return coordinates;
     }
 
-    public void setCoordinates(Coordinates coordinates) {
+    public void setCoordinates(CoordinatesDto coordinates) {
         this.coordinates = coordinates;
     }
 
@@ -82,11 +82,11 @@ public class WorkerDto extends AbstractDto {
         this.position = position;
     }
 
-    public Person getPerson() {
+    public PersonDto getPerson() {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(PersonDto person) {
         this.person = person;
     }
 }

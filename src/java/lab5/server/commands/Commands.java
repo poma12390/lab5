@@ -127,13 +127,22 @@ public class Commands {
             SetPosition.setPosition(pos, bum);
             String id = sts[10].trim();
             SetId.setId(id,bum);
+            ids.add(Integer.parseInt(id));
             String crdate = sts[11].trim();
             SetData.setCreationData(crdate,bum);
             return bum;
         }
 
+    public static Worker getWorkerById(int id) {
+        for (Worker bum : workers) {
+            Integer s = bum.getId();
+            if (s == id) {
+                return bum;
+            }
 
-
+        }
+        return null;
+    }
 
 
 

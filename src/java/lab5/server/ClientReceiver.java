@@ -27,7 +27,7 @@ public class ClientReceiver {
         CommandRequestDto<? extends Serializable> requestObject = (CommandRequestDto<? extends Serializable>) transformer.DeSerialize(requestContent);
         String name = requestObject.getCommandName();
         System.out.println(name + " server");
-        System.out.println(Commands.getWorkersSet());
+
         Commands.runCommandFromString(Commands.getWorkersSet(), name, requestObject);
         //CommandRequestDto
 

@@ -7,11 +7,8 @@ import lab5.common.Position;
 import lab5.common.Worker;
 import lab5.common.exceptions.EndStreamException;
 import lab5.common.exceptions.MissedCommandArgumentException;
-import lab5.client.memory.HistoryWork;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.time.ZonedDateTime;
 import java.util.*;
 
@@ -19,7 +16,6 @@ import static lab5.client.inputters.InputUtils.*;
 
 
 public class Utils {
-    private static ArrayList<Integer> ids = new ArrayList<Integer>();
 
     public static BufferedReader currentBufferedReader;
 
@@ -154,8 +150,9 @@ public class Utils {
                 try {
                     command.ExecuteCommand(commandParams);
                     test = true;
-                }catch (MissedCommandArgumentException e) {
+                }catch (MissedCommandArgumentException | MissingFormatArgumentException e) {
                     System.out.println(e.getMessage());
+                    test = true;
 
                 }catch (EndStreamException ignored){
 

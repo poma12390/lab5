@@ -1,8 +1,9 @@
 package lab5.common;
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
-public class Person {
+public class Person  {
     public ZonedDateTime getBirthday() {
         return birthday;
     }

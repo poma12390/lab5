@@ -4,7 +4,7 @@ import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
-import lab5.runners.Commands;
+import lab5.common.dto.UpdateIdCommandDto;
 import lab5.server.ClientCaller;
 
 import java.io.IOException;
@@ -21,11 +21,22 @@ public class UpdateIdCommand extends BaseCommand {
 
     /**
      * update command
+     *
      * @param params id Worker to update
-     * update all stats
+     *               update all stats
      */
     @Override
     protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) throws IOException {
-
+        UpdateIdCommandDto updateIdCommandDto = (UpdateIdCommandDto) params.getCommandArgs();
+        if (updateIdCommandDto.getWorkerDto() != null) {
+            Worker newbum = Transformer.WorkerDtoToWorker(updateIdCommandDto.getWorkerDto());
+            Worker bum = Commands.getWorkerById(updateIdCommandDto.getWorkerId());
+            Transformer.WorkerToWorker(bum, newbum);
+            clientCaller.sendToClient(transformer.Serialize("Success"));
+        } else {
+            if (Commands.getIds().contains(updateIdCommandDto.getWorkerId())) {
+                clientCaller.sendToClient(transformer.Serialize("Correct id"));
+            } else clientCaller.sendToClient(transformer.Serialize("UnCorrect Id"));
+        }
     }
 }
