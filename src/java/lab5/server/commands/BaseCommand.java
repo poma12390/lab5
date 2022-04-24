@@ -1,10 +1,16 @@
-package lab5.client.commands;
+package lab5.server.commands;
 
+import lab5.client.commands.ParamsChecker;
+import lab5.client.memory.HistoryWork;
+import lab5.common.Worker;
+import lab5.common.dto.CommandRequestDto;
 import lab5.common.exceptions.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.ParseException;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 public abstract class BaseCommand {
@@ -30,16 +36,16 @@ public abstract class BaseCommand {
         return 0;
     }
 
-    protected abstract void Execute(List<String> params) throws IOException, InvalidSalaryException, InvalidDateFormatException, ParseException, InvalidEndDateException;
+    protected abstract void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set) throws IOException, InvalidSalaryException, InvalidDateFormatException, ParseException, InvalidEndDateException;
 
     public String getName() {
         return name;
     }
 
-    public void ExecuteCommand(List<String> params) {
-        //ParamsChecker.checkParams(getCommandParamsCount(), params);
+    public void ExecuteCommand(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set) {
         try {
-            Execute(params);
+            Execute(params, set);
+            HistoryWork.historyAdd(name);
         } catch (InvalidEndDateException | FileNotFoundException | MissedCommandArgumentException | EmptyCollectionException | InvalidSalaryException | InvalidDateFormatException | RecursiveScriptExecuteException e){
             System.out.println(e.getMessage());
         } catch (IOException e) {

@@ -148,24 +148,6 @@ public class Utils {
         }
     }
 
-    @Deprecated
-    private static void runCommand(LinkedHashSet<Worker> workers, String commandName, List<String> commandParams) {
-        try {
-            Method method = Utils.class.getMethod(commandName, List.class, LinkedHashSet.class);
-            method.invoke(null, commandParams, workers);
-            HistoryWork.historyAdd(commandName);
-        } catch (InvocationTargetException e) {
-            HistoryWork.historyAdd(commandName);
-            System.out.println(e.getCause().getMessage());
-        } catch (NoSuchMethodException e) {
-            System.out.println("no such command");
-        } catch (NullPointerException | NoSuchElementException e){
-            funExit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     private static void runCommand2(String commandName, List<String> commandParams) {
         for (BaseCommand command: commands) {
             if (command.getName().equalsIgnoreCase(commandName)) {

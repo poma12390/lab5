@@ -1,11 +1,25 @@
 package lab5.client;
 
+import lab5.common.Transformer;
+import lab5.common.dto.CommandRequestDto;
+import lab5.server.commands.Commands;
+
+import java.io.Serializable;
+
 public class ServerReceiver {
 
-    private final ServerCaller serverReceiver;
+    public void requestFromServer(byte[] requestContent){
 
-    public ServerReceiver(ServerCaller serverReceiver) {
-        this.serverReceiver = serverReceiver;
+
+
+        // TODO: десериализация requestContent -> commandDto
+        // вместо этого пока создадим "в лоб"
+        Commands commands = new Commands();
+        Transformer transformer = new Transformer();
+        String request = (String)transformer.DeSerialize(requestContent);
+        System.out.println(request);
+        //CommandRequestDto
+
     }
 
 //    public List<Worker> getCollection(){

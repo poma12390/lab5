@@ -1,8 +1,10 @@
 package lab5.server.commands;
 
+import lab5.server.*;
 import lab5.commands.*;
 import lab5.common.Person;
 import lab5.common.Worker;
+import lab5.common.dto.CommandRequestDto;
 import lab5.common.exceptions.EmptyCollectionException;
 import lab5.common.exceptions.EndStreamException;
 import lab5.common.exceptions.InvalidDataException;
@@ -23,6 +25,10 @@ public class Commands {
 
     public static BufferedReader currentBufferedReader;
 
+    public LinkedHashSet<Worker> getSet() {
+        return set;
+    }
+
     private LinkedHashSet<Worker> set = new LinkedHashSet<>();
     public static boolean blockPrompts = false;
 
@@ -39,10 +45,9 @@ public class Commands {
     public static void setCurrentBufferedReader(BufferedReader currentBufferedReader) {
         Commands.currentBufferedReader = currentBufferedReader;
     }
-    private static List<BaseCommand> commands = Arrays.asList(
+    private static List<lab5.server.commands.BaseCommand> commands = Arrays.asList(
             new ShowCommand(),
             new ExitCommand(),
-            new HelpCommand(),
             new InfoCommand(),
             new AddCommand(),
             new AddIfMinCommand(),
@@ -199,16 +204,12 @@ public class Commands {
     }
 
     static boolean test = true;
-    public static void runCommandFromString(LinkedHashSet<Worker> workers, String input) {
+    public static void runCommandFromString(LinkedHashSet<Worker> workers, String input, CommandRequestDto<? extends Serializable> params) {
 
         try {
             test = false;
             String[] items = input.split(" ");
             String cmd = items[0].toLowerCase();
-            List<String> params = new ArrayList<>();
-            for (int i = 1; i < items.length; i++) {
-                params.add(items[i]);
-            }
 
             //runCommand(workers, cmd, params);
             runCommand2(workers, cmd, params);
@@ -223,7 +224,7 @@ public class Commands {
         }
     }
 
-    private static void runCommand2(LinkedHashSet<Worker> workers, String commandName, List<String> commandParams) {
+    private static void runCommand2(LinkedHashSet<Worker> workers, String commandName, CommandRequestDto<? extends Serializable> commandParams) {
         for (BaseCommand command: commands) {
             if (command.getName().equalsIgnoreCase(commandName)) {
                 try {
@@ -244,7 +245,7 @@ public class Commands {
     }
 
     public void funExit(){
-        runCommandFromString(this.set, "save");
+        runCommandFromString(this.set, "save", null);
         System.out.println("для выхода я написал комманду exit");
         System.out.println(" +\"\"\"\"\"+ ");
         System.out.println("[| o o |]");

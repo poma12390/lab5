@@ -1,4 +1,5 @@
 package lab5.client;
+import lab5.client.commands.Utils;
 import lab5.common.Worker;
 import lab5.common.Transformer;
 import lab5.common.dto.AddCommandDto;
@@ -12,8 +13,8 @@ import java.nio.ByteBuffer;
 public class ClientRunner {
     public static void main(String[] args) {
 
-        String input = "info";
-        Commands.temporaryStart();//типо запустил сервер инициализация всего
+        String input = "show";
+        //Commands.temporaryStart();//типо запустил сервер инициализация всего
         Worker bum = new Worker();
         WorkerDto workerDto = Transformer.WorkerToWorkerDto(bum);
         CommandRequestDto<WorkerDto> commandRequestDto = new CommandRequestDto<>("add", workerDto);
@@ -30,18 +31,20 @@ public class ClientRunner {
         buf.put(transformer.Serialize(man));
         byte[] test;
         CommandRequestDto<AddCommandDto> crd = new CommandRequestDto<>("add",add);
-        System.out.println(crd.getCommandArgs().getBum().getName());
+        //System.out.println(crd.getCommandArgs().getBum().getName());
         test = transformer.Serialize(crd);
         //System.out.println(crd.getCommandArgs().getBum().getName() + " " + crd.getCommandName());
 
+        Utils.runCommandFromString(input);
+
         ServerCaller serverCaller = new ServerCaller();
 
-        try {
-
-            serverCaller.sendToServer(transformer.Serialize(crd));}
-        catch (ServerNotFoundException e){
-            System.out.println(e.getMessage());
-        }
+//        try {
+//
+//            serverCaller.sendToServer(transformer.Serialize(crd));}
+//        catch (ServerNotFoundException e){
+//            System.out.println(e.getMessage());
+//        }
 
 
     }
