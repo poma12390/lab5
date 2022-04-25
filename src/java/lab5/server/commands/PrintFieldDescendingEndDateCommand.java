@@ -12,7 +12,7 @@ import java.util.*;
 public class PrintFieldDescendingEndDateCommand extends BaseCommand {
     @Override
     public String getName() {
-        return "print_field_descending_endDate";
+        return "print_field_descending_end_date";
     }
 
     /**
@@ -22,6 +22,22 @@ public class PrintFieldDescendingEndDateCommand extends BaseCommand {
 
     @Override
     protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) {
+        String response = "";
+        List<Date> dates = new ArrayList<Date>();
+        Iterator<Worker> it = set.iterator();
+        if (set.size() == 0) {
+            response = response + "empty collection";
+        } else {
+            while (it.hasNext()) {
+                Worker bum = it.next();
+                dates.add(bum.getEndDate());
 
+            }
+            Collections.sort(dates);
+            for (int i = 0; i < dates.size(); i++) {
+                response = response + dates.get(i).toString() + "\r\n";
+            }
+        }
+        clientCaller.sendToClient(transformer.Serialize(response));
     }
 }
