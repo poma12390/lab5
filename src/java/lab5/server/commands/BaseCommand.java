@@ -50,7 +50,7 @@ public abstract class BaseCommand {
             Execute(params, set, transformer, clientCaller);
             HistoryWork.historyAdd(name);
         } catch (InvalidEndDateException | FileNotFoundException | MissedCommandArgumentException | EmptyCollectionException | InvalidSalaryException | InvalidDateFormatException | RecursiveScriptExecuteException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() + " server exception ignored later");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {

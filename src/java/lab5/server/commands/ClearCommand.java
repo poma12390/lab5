@@ -19,6 +19,7 @@ public class ClearCommand extends BaseCommand {
     @Override
     protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) {
 
-
+        set.clear();
+        clientCaller.sendToClient(transformer.Serialize("success"));
     }
 }
