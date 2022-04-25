@@ -30,9 +30,10 @@ public class FilterBySalaryCommand extends BaseCommand{
 
         ParamsChecker.checkParams(1, params);
         String salary = params.get(0);
-        Iterator<Worker> it = set.iterator();
+
         Worker test = new Worker();
             SetSalary.setSalary(salary, test);
+            Iterator<Worker> it = set.iterator();
             while (it.hasNext()) {
                 Worker bum = it.next();
                 if (bum.getSalary() == test.getSalary()) {
