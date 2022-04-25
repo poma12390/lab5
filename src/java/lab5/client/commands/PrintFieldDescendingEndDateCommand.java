@@ -27,7 +27,10 @@ public class PrintFieldDescendingEndDateCommand extends BaseCommand {
         serverCaller.sendToServer(transformer.Serialize(crd));
 
         byte[] buf = ServerReceiver.receiveFromServer();
-        String response = (String) transformer.DeSerialize(buf);
-        System.out.println(response);
+        List<Date> response = (List<Date>) transformer.DeSerialize(buf);
+        for (Date i : response){
+            System.out.print(i + "; ");
+        }
+        System.out.println();
     }
 }

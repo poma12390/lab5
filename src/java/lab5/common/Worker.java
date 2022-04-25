@@ -1,13 +1,14 @@
 package lab5.common;
 
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Date;
 
-public class Worker implements Comparable<Worker>{
+public class Worker implements Comparable<Worker>, Serializable {
     public void setStats(String name, Coordinates coordinates, float salary, Date startDate, Date endDate, Position position, Person person) {
         this.name = name;
         this.coordinates = coordinates;

@@ -3,7 +3,7 @@ package lab5.common;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
-public class Person  {
+public class Person implements Serializable {
     public ZonedDateTime getBirthday() {
         return birthday;
     }

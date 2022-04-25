@@ -1,7 +1,9 @@
 package lab5.common;
 
 
-public class Coordinates{
+import java.io.Serializable;
+
+public class Coordinates implements Serializable {
     public void setXY(long x, Integer y) {
         this.x = x;
         this.y = y;

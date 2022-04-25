@@ -11,9 +11,11 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShowCommand extends BaseCommand {
 
@@ -27,7 +29,7 @@ public class ShowCommand extends BaseCommand {
         if (set.size() == 0) {
                 String except = "collection is empty!";
 
-                clientCaller.sendToClient(transformer.Serialize(except)); ///////////
+                clientCaller.sendToClient(transformer.Serialize(set)); ///////////
                 throw new EmptyCollectionException();
             }
 
@@ -40,10 +42,9 @@ public class ShowCommand extends BaseCommand {
             while (it1.hasNext()) {
                 Worker bum = it1.next();
                 collection = collection+bum.toString();
+                clientCaller.sendToClient(transformer.Serialize(set));
                 //outputStreamWriter.write((bum.getName()+";"+Long.toString(bum.getCoordinates().getX())+";"+Integer.toString(bum.getCoordinates().getY())+";"+Float.toString(bum.getSalary())+";"+df.format(bum.getStartDate())+";"+df.format(bum.getEndDate())+";"+bum.getPerson().getBirthday().format(formatter)+";"+Float.toString(bum.getPerson().getHeight())+";"+Float.toString(bum.getPerson().getWeight())+";"+bum.getPosition().toString())+"\r\n");
             }
-            clientCaller.sendToClient(transformer.Serialize(collection));
-
         }
             //Commands.show(params, set);
 

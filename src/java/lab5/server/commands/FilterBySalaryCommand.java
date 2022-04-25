@@ -1,19 +1,17 @@
 package lab5.server.commands;
 
-import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
 import lab5.common.dto.FilterBySalaryCommandDto;
-import lab5.common.dto.UpdateIdCommandDto;
 import lab5.common.exceptions.InvalidSalaryException;
 import lab5.server.ClientCaller;
-import lab5.setterrs.SetSalary;
 
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FilterBySalaryCommand extends BaseCommand {
     @Override
@@ -35,19 +33,17 @@ public class FilterBySalaryCommand extends BaseCommand {
     @Override
     protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) throws InvalidSalaryException {
         FilterBySalaryCommandDto filterBySalaryCommandDto = (FilterBySalaryCommandDto) params.getCommandArgs();
-        Float salary = filterBySalaryCommandDto.getSalary();
+        float salary = filterBySalaryCommandDto.getSalary();
+        String response = "";
 
-        String request ="";
-        for (Worker bum : set) {
-            if (bum.getSalary() == salary) {
-                request = request + bum.toString();
-                //System.out.println("чел " + bum.getId() + " " + bum.getName() + " зарабатывает " + bum.getSalary());
-            }
+        List<Worker> workers = (set.stream().filter((p) -> p.getSalary() == salary).collect(Collectors.toList())); // Получаем нужных челов
+        //System.out.println(workers);
+        response = response + "Всего найдено " + workers.size() + " челов" + "\r\n";
+        for (int i =0; i<workers.size(); i++){
+            response = response + workers.get(i).toString();
         }
-        if (request.equals("")){
-            clientCaller.sendToClient(transformer.Serialize("No such guys"));
-        }
-        else clientCaller.sendToClient(transformer.Serialize(request));
+        clientCaller.sendToClient(transformer.Serialize(response));
     }
 }
+
 
