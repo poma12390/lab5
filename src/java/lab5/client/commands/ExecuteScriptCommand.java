@@ -29,11 +29,11 @@ public class ExecuteScriptCommand extends BaseCommand {
         ParamsChecker.checkParams(1, params);
 
         String fileName = params.get(0);
-
+        File file = new File(fileName);
         if (!isFileExecuted)
             OverflowChecker.getFiles().clear();
 
-        OverflowChecker.checkRec(fileName);
+        OverflowChecker.checkRec(file.getAbsolutePath());
 
         BufferedReader oldReader = currentBufferedReader;
         blockPrompts = true;
@@ -46,7 +46,7 @@ public class ExecuteScriptCommand extends BaseCommand {
                     InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
                     BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                     Utils.setCurrentBufferedReader(bufferedReader);
-
+                    BufferedReader bf = Utils.getCurrentBufferedReader();
                     do {
                         try {
                             String commandWithParameters = inputString("");

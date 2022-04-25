@@ -20,7 +20,7 @@ public class ClientRunner {
         InputStream inputStream = System.in;
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        lab5.runners.Commands.setCurrentBufferedReader(bufferedReader);
+        Utils.setCurrentBufferedReader(bufferedReader);
 
 
         Commands.temporaryStart();//типо запустил сервер инициализация всего

@@ -18,6 +18,7 @@ import static lab5.client.inputters.InputUtils.*;
 
 public class Utils {
 
+
     public static BufferedReader currentBufferedReader;
 
     public static boolean blockPrompts = false;
@@ -31,6 +32,10 @@ public class Utils {
     }
 
     public static boolean isFileExecuted = false;
+
+    public static BufferedReader getCurrentBufferedReader() {
+        return currentBufferedReader;
+    }
 
     public static void setCurrentBufferedReader(BufferedReader currentBufferedReader) {
         Utils.currentBufferedReader = currentBufferedReader;

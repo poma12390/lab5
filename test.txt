@@ -10,5 +10,6 @@ kl
 11.11.1111
 1
 1
-baker
-executescript test1.txt
+bake
+director
+execute_script test1.txt

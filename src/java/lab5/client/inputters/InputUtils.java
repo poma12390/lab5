@@ -5,8 +5,7 @@ import lab5.common.Position;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
-import static lab5.runners.Commands.blockPrompts;
-import static lab5.runners.Commands.currentBufferedReader;
+import static lab5.client.commands.Utils.*;
 
 
 public class InputUtils {
