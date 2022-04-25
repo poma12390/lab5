@@ -1,6 +1,7 @@
 package lab5.client.commands;
 
 
+import lab5.client.memory.HistoryWork;
 import lab5.common.Coordinates;
 import lab5.common.Person;
 import lab5.common.Position;
@@ -52,19 +53,6 @@ public class Utils {
             new SaveCommand(),
             new UpdateIdCommand()
     );
-
-
-    /**
-     * upload command
-     * @param sts stats to upload bum
-     * @return Worker
-     */
-
-
-
-
-
-
 
 
     /**
@@ -149,6 +137,7 @@ public class Utils {
             if (command.getName().equalsIgnoreCase(commandName)) {
                 try {
                     command.ExecuteCommand(commandParams);
+
                     test = true;
                 }catch (MissedCommandArgumentException | MissingFormatArgumentException e) {
                     System.out.println(e.getMessage());
@@ -158,7 +147,6 @@ public class Utils {
 
                 }
                 catch (Exception e) {
-                    System.out.println("sd");
                     e.printStackTrace();
                 }
             }

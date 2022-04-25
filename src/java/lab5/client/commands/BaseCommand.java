@@ -2,6 +2,7 @@ package lab5.client.commands;
 
 import lab5.client.ServerCaller;
 import lab5.client.ServerReceiver;
+import lab5.client.memory.HistoryWork;
 import lab5.common.Transformer;
 import lab5.common.exceptions.*;
 
@@ -46,6 +47,7 @@ public abstract class BaseCommand {
         //ParamsChecker.checkParams(getCommandParamsCount(), params);
         try {
             Execute(params);
+            HistoryWork.historyAdd(name);
         } catch (InvalidEndDateException | FileNotFoundException | MissedCommandArgumentException | EmptyCollectionException | InvalidSalaryException | InvalidDateFormatException | RecursiveScriptExecuteException e){
             System.out.println(e.getMessage());
         } catch (IOException e) {

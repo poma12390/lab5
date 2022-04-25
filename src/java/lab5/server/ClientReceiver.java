@@ -1,12 +1,8 @@
 package lab5.server;
 
 
-import lab5.client.commands.AddCommand;
-import lab5.client.commands.InfoCommand;
 import lab5.common.Transformer;
-import lab5.common.dto.AddCommandDto;
 import lab5.common.dto.CommandRequestDto;
-import lab5.common.dto.InfoCommandDto;
 import lab5.server.commands.Commands;
 
 import java.io.Serializable;

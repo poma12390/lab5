@@ -1,7 +1,6 @@
 package lab5.server.commands;
 
-import lab5.client.commands.ParamsChecker;
-import lab5.client.memory.HistoryWork;
+
 import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
@@ -13,7 +12,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.LinkedHashSet;
-import java.util.List;
 
 public abstract class BaseCommand {
 
@@ -48,7 +46,6 @@ public abstract class BaseCommand {
     public void ExecuteCommand(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set) {
         try {
             Execute(params, set, transformer, clientCaller);
-            HistoryWork.historyAdd(name);
         } catch (InvalidEndDateException | FileNotFoundException | MissedCommandArgumentException | EmptyCollectionException | InvalidSalaryException | InvalidDateFormatException | RecursiveScriptExecuteException e){
             System.out.println(e.getMessage() + " server exception ignored later");
         } catch (IOException e) {
