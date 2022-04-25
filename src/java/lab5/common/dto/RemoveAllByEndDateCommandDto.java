@@ -12,4 +12,13 @@ public class RemoveAllByEndDateCommandDto extends AbstractDto{
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+     private long count;
+
+    public long getCount() {
+        return count;
+    }
+
+    public void setCount(long count) {
+        this.count = count;
+    }
 }

@@ -10,4 +10,14 @@ public class RemoveByIdCommandDto extends AbstractDto{
     public void setId(int id) {
         this.id = id;
     }
+
+    private long count;
+
+    public long getCount() {
+        return count;
+    }
+
+    public void setCount(long count) {
+        this.count = count;
+    }
 }

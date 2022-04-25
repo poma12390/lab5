@@ -3,6 +3,8 @@ package lab5.client.commands;
 import lab5.client.ServerReceiver;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
+import lab5.common.dto.PrintFieldDescendingEndDateCommandDto;
 import lab5.common.dto.ShowCommandDto;
 
 import java.util.LinkedHashSet;
@@ -24,11 +26,13 @@ public class ShowCommand extends BaseCommand {
         serverCaller.sendToServer(transformer.Serialize(crd));
 
         byte[] buf = ServerReceiver.receiveFromServer();
+        CommandResponseDto response = (CommandResponseDto) transformer.DeSerialize(buf);
+        dto = (ShowCommandDto) response.getCommandArgs();
 
-        LinkedHashSet<Worker> response = (LinkedHashSet<Worker>) transformer.DeSerialize(buf);
-        if (response.size()==0)
+        List<Worker> workers = (List<Worker>) dto.getWorkers();
+        if (workers.size()==0)
             System.out.println("Collection is empty");
-        for (Worker i : response){
+        for (Worker i : workers){
             System.out.print(i);
         }
 

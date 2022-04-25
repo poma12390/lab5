@@ -3,7 +3,9 @@ package lab5.server.commands;
 import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
+import lab5.common.dto.ClearCommandDto;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
 import lab5.common.dto.UpdateIdCommandDto;
 import lab5.server.ClientCaller;
 
@@ -28,15 +30,20 @@ public class UpdateIdCommand extends BaseCommand {
     @Override
     protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) throws IOException {
         UpdateIdCommandDto updateIdCommandDto = (UpdateIdCommandDto) params.getCommandArgs();
+        CommandResponseDto dto = new CommandResponseDto(updateIdCommandDto);
         if (updateIdCommandDto.getWorkerDto() != null) {
             Worker newbum = Transformer.WorkerDtoToWorker(updateIdCommandDto.getWorkerDto());
             Worker bum = Commands.getWorkerById(updateIdCommandDto.getWorkerId());
             Transformer.WorkerToWorker(bum, newbum);
-            clientCaller.sendToClient(transformer.Serialize("Success"));
+            dto.setResponse("Success");
+            clientCaller.sendToClient(transformer.Serialize(dto));
         } else {
             if (Commands.getIds().contains(updateIdCommandDto.getWorkerId())) {
-                clientCaller.sendToClient(transformer.Serialize("Correct id"));
-            } else clientCaller.sendToClient(transformer.Serialize("UnCorrect Id"));
+                dto.setResponse("Correct id");
+                clientCaller.sendToClient(transformer.Serialize(dto));
+            } else {dto.setResponse("UnCorrect Id");
+                clientCaller.sendToClient(transformer.Serialize(dto));}
+
         }
     }
 }

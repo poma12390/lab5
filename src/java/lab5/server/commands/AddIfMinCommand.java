@@ -3,10 +3,7 @@ package lab5.server.commands;
 import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
-import lab5.common.dto.AddCommandDto;
-import lab5.common.dto.AddIfMinCommandDto;
-import lab5.common.dto.CommandRequestDto;
-import lab5.common.dto.WorkerDto;
+import lab5.common.dto.*;
 import lab5.runners.Commands;
 import lab5.server.ClientCaller;
 
@@ -34,7 +31,7 @@ public class AddIfMinCommand extends BaseCommand {
         AddIfMinCommandDto addIfMinCommandDto = (AddIfMinCommandDto) params.getCommandArgs();
         WorkerDto workerDto = addIfMinCommandDto.getBum();
         Worker bum = Transformer.WorkerDtoToWorker(workerDto);
-
+        CommandResponseDto dto = new CommandResponseDto(addIfMinCommandDto);
         if (set.size() == 0) {
             bum = makeId(bum);
             set.add(bum);
@@ -43,11 +40,12 @@ public class AddIfMinCommand extends BaseCommand {
             if (bum.compareTo(min) < 0) {
                 bum = makeId(bum);
                 set.add(bum);
-                clientCaller.sendToClient(transformer.Serialize("success"));
+                dto.setResponse("success");
+
             } else {
-                clientCaller.sendToClient(transformer.Serialize("not min element"));
+                dto.setResponse("not min element");
             }
-        }
+        } clientCaller.sendToClient(transformer.Serialize(dto));
 
     }
 }

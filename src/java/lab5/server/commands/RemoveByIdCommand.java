@@ -4,6 +4,7 @@ import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
 import lab5.common.dto.RemoveAllByEndDateCommandDto;
 import lab5.common.dto.RemoveByIdCommandDto;
 import lab5.server.ClientCaller;
@@ -38,7 +39,9 @@ public class RemoveByIdCommand extends BaseCommand {
         long count = (set.stream().filter((p) -> p.getId() == id).count());
         set.removeIf(worker -> worker.getId() == id);
         clientCaller.sendToClient(transformer.Serialize(count));
-
+        removeByIdCommandDto.setCount(count);
+        CommandResponseDto dto = new CommandResponseDto(removeByIdCommandDto);
+        clientCaller.sendToClient(transformer.Serialize(dto));
 
         }
 }

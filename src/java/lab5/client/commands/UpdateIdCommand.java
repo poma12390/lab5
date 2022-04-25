@@ -5,6 +5,7 @@ import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.AddCommandDto;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
 import lab5.common.dto.UpdateIdCommandDto;
 
 import java.io.IOException;
@@ -38,15 +39,18 @@ public class UpdateIdCommand extends BaseCommand {
         serverCaller.sendToServer(transformer.Serialize(crd));
 
         byte[] buf = ServerReceiver.receiveFromServer();
-        String response = (String) transformer.DeSerialize(buf);
+        CommandResponseDto responseObj = (CommandResponseDto) transformer.DeSerialize(buf);
+        String response = responseObj.getResponse();
         System.out.println(response);
         if (response.equals("Correct id")) {
             Worker bum = new Worker();
             Utils.updateAll(bum);
             dto.setWorkerDto(Transformer.WorkerToWorkerDto(bum));
             serverCaller.sendToServer(transformer.Serialize(crd));
+
             buf = ServerReceiver.receiveFromServer();
-            response = (String) transformer.DeSerialize(buf);
+            responseObj = (CommandResponseDto) transformer.DeSerialize(buf);
+            response = responseObj.getResponse();
             System.out.println(response);
         }
 

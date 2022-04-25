@@ -5,6 +5,7 @@ import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.AddCommandDto;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
 import lab5.common.dto.WorkerDto;
 import lab5.runners.Commands;
 import lab5.server.ClientCaller;
@@ -28,6 +29,8 @@ public class AddCommand extends BaseCommand {
         Worker bum = Transformer.WorkerDtoToWorker(workerDto);
         lab5.server.commands.Commands.makeId(bum);
         set.add(bum);
-        clientCaller.sendToClient(transformer.Serialize("success"));
+        CommandResponseDto dto = new CommandResponseDto(addCommandDto);
+        dto.setResponse("success");
+        clientCaller.sendToClient(transformer.Serialize(dto));
     }
 }

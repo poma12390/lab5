@@ -4,6 +4,7 @@ import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
 import lab5.common.exceptions.EmptyCollectionException;
 import lab5.server.ClientCaller;
 
@@ -25,6 +26,16 @@ public class RemoveLowerCommand extends BaseCommand {
 
     @Override
     protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) {
+        CommandResponseDto dto = new CommandResponseDto(params.getCommandArgs());
+        if (set.size() == 0) {
+            dto.setResponse("Collection is empty");
+            clientCaller.sendToClient(transformer.Serialize(dto));
+            throw new EmptyCollectionException();
+        }
+        Worker min = Collections.min(set);
+        set.remove(min);
 
+        dto.setResponse("success");
+        clientCaller.sendToClient(transformer.Serialize(dto));
     }
 }

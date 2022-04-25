@@ -3,6 +3,7 @@ package lab5.client.commands;
 import lab5.client.ServerReceiver;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
 import lab5.common.dto.PrintFieldDescendingEndDateCommandDto;
 import lab5.common.dto.RemoveAllByEndDateCommandDto;
 import lab5.common.exceptions.InvalidDateFormatException;
@@ -58,8 +59,12 @@ public class RemoveAllByEndDateCommand extends BaseCommand {
         }
         serverCaller.sendToServer(transformer.Serialize(crd));
         byte[] buf = ServerReceiver.receiveFromServer();
-        long response = (long) transformer.DeSerialize(buf);
-        System.out.println("Deleted " +response + " elements");
+        CommandResponseDto response = (CommandResponseDto) transformer.DeSerialize(buf);
+        dto = (RemoveAllByEndDateCommandDto) response.getCommandArgs();
+        long count = dto.getCount();
+
+
+        System.out.println("Deleted " +count + " elements");
 
     }
 }

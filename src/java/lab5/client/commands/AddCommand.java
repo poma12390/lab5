@@ -5,6 +5,7 @@ import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.AddCommandDto;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
 import lab5.common.dto.WorkerDto;
 import lab5.common.exceptions.InvalidDateFormatException;
 import lab5.common.exceptions.InvalidEndDateException;
@@ -28,8 +29,8 @@ public class AddCommand extends BaseCommand {
         serverCaller.sendToServer(transformer.Serialize(crd));
 
         byte[] buf = ServerReceiver.receiveFromServer();
-        String response = (String) transformer.DeSerialize(buf);
-        System.out.println(response);
+        CommandResponseDto response = (CommandResponseDto) transformer.DeSerialize(buf);
+        System.out.println(response.getResponse());
 
     }
 }

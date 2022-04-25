@@ -2,6 +2,7 @@ package lab5.client.commands;
 
 import lab5.client.ServerReceiver;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
 import lab5.common.dto.InfoCommandDto;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class InfoCommand extends BaseCommand {
         serverCaller.sendToServer(transformer.Serialize(crd));
 
         byte[] buf = ServerReceiver.receiveFromServer();
-        String response = (String) transformer.DeSerialize(buf);
-        System.out.println(response);
+        CommandResponseDto response = (CommandResponseDto) transformer.DeSerialize(buf);
+        System.out.println(response.getResponse());
     }
 }

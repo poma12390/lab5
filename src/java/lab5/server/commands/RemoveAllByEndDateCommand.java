@@ -4,6 +4,7 @@ import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
 import lab5.common.dto.FilterBySalaryCommandDto;
 import lab5.common.dto.RemoveAllByEndDateCommandDto;
 import lab5.common.exceptions.InvalidDateFormatException;
@@ -43,7 +44,9 @@ public class RemoveAllByEndDateCommand extends BaseCommand {
         Date endDate = removeAllByEndDateCommandDto.getEndDate();
         long count = (set.stream().filter((p) -> p.getEndDate().equals(endDate)).count());
         set.removeIf(worker -> worker.getEndDate().equals(endDate));
-        clientCaller.sendToClient(transformer.Serialize(count));
+        removeAllByEndDateCommandDto.setCount(count);
+        CommandResponseDto dto = new CommandResponseDto(removeAllByEndDateCommandDto);
+        clientCaller.sendToClient(transformer.Serialize(dto));
 
     }
 }

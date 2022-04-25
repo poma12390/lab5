@@ -4,6 +4,8 @@ import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
+import lab5.common.dto.InfoCommandDto;
 import lab5.common.exceptions.EmptyCollectionException;
 import lab5.server.ClientCaller;
 
@@ -31,6 +33,8 @@ public class InfoCommand extends BaseCommand {
             response = response + "Type - Worker \r\n";
             response = response + "Created date - " + p1.getCreationDate();
         }
-        clientCaller.sendToClient(transformer.Serialize(response));
+        CommandResponseDto dto = new CommandResponseDto(new InfoCommandDto());
+        dto.setResponse(response);
+        clientCaller.sendToClient(transformer.Serialize(dto));
     }
 }

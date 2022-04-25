@@ -3,10 +3,7 @@ package lab5.client.commands;
 import lab5.client.ServerReceiver;
 import lab5.common.Transformer;
 import lab5.common.Worker;
-import lab5.common.dto.AddCommandDto;
-import lab5.common.dto.AddIfMinCommandDto;
-import lab5.common.dto.CommandRequestDto;
-import lab5.common.dto.WorkerDto;
+import lab5.common.dto.*;
 import lab5.runners.Commands;
 
 import java.io.IOException;
@@ -36,8 +33,8 @@ public class AddIfMinCommand extends BaseCommand {
         serverCaller.sendToServer(transformer.Serialize(crd));
 
         byte[] buf = ServerReceiver.receiveFromServer();
-        String response = (String) transformer.DeSerialize(buf);
-        System.out.println(response);
+        CommandResponseDto response = (CommandResponseDto) transformer.DeSerialize(buf);
+        System.out.println(response.getResponse());
 
     }
 }

@@ -3,6 +3,7 @@ package lab5.server.commands;
 import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
 import lab5.common.dto.FilterBySalaryCommandDto;
 import lab5.common.exceptions.InvalidSalaryException;
 import lab5.server.ClientCaller;
@@ -39,10 +40,10 @@ public class FilterBySalaryCommand extends BaseCommand {
         List<Worker> workers = (set.stream().filter((p) -> p.getSalary() == salary).collect(Collectors.toList())); // Получаем нужных челов
         //System.out.println(workers);
         response = response + "Всего найдено " + workers.size() + " челов" + "\r\n";
-        for (int i =0; i<workers.size(); i++){
-            response = response + workers.get(i).toString();
-        }
-        clientCaller.sendToClient(transformer.Serialize(response));
+        filterBySalaryCommandDto.setWorkers(workers);
+        CommandResponseDto dto = new CommandResponseDto(filterBySalaryCommandDto);
+        dto.setResponse(response);
+        clientCaller.sendToClient(transformer.Serialize(dto));
     }
 }
 

@@ -4,6 +4,8 @@ import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
+import lab5.common.dto.PrintFieldDescendingEndDateCommandDto;
 import lab5.server.ClientCaller;
 
 import java.io.Serializable;
@@ -25,8 +27,11 @@ public class PrintFieldDescendingEndDateCommand extends BaseCommand {
     @Override
     protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) {
 
-        List<Date> date = Arrays.stream(set.stream().flatMap((p) -> Stream.of(p.getEndDate())).toArray(Date[]::new)).sorted().collect(Collectors.toList());
+        List<Date> dates = Arrays.stream(set.stream().flatMap((p) -> Stream.of(p.getEndDate())).toArray(Date[]::new)).sorted().collect(Collectors.toList());
         // Жестко переписал с Stream Api
-        clientCaller.sendToClient(transformer.Serialize((Serializable) date));
+        PrintFieldDescendingEndDateCommandDto dts = new PrintFieldDescendingEndDateCommandDto();
+        dts.setDates(dates);
+        CommandResponseDto dto = new CommandResponseDto(dts);
+        clientCaller.sendToClient(transformer.Serialize(dto));
     }
 }

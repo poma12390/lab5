@@ -3,6 +3,7 @@ package lab5.client.commands;
 import lab5.client.ServerReceiver;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
 import lab5.common.dto.FilterBySalaryCommandDto;
 import lab5.common.dto.ShowCommandDto;
 import lab5.common.exceptions.InvalidSalaryException;
@@ -40,9 +41,17 @@ public class FilterBySalaryCommand extends BaseCommand {
         }
         CommandRequestDto<FilterBySalaryCommandDto> crd = new CommandRequestDto<>(getName(), dto);
         serverCaller.sendToServer(transformer.Serialize(crd));
+
         byte[] buf = ServerReceiver.receiveFromServer();
-        String response = (String) transformer.DeSerialize(buf);
-        System.out.println(response);
+        CommandResponseDto response = (CommandResponseDto) transformer.DeSerialize(buf);
+        dto = (FilterBySalaryCommandDto) response.getCommandArgs();
+        List<Worker> workers = dto.getWorkers();
+        if (workers.size() == 0){
+            System.out.println("No workers found");
+        }
+        for (Worker i : workers){
+            System.out.println(i);
+        }
 
     }
 }

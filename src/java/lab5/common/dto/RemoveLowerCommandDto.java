@@ -1,4 +1,4 @@
 package lab5.common.dto;
 
-public class RemoveLowerCommandDto {
+public class RemoveLowerCommandDto extends AbstractDto {
 }

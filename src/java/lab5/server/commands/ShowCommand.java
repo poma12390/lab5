@@ -1,21 +1,14 @@
 package lab5.server.commands;
 
-import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
-import lab5.common.exceptions.EmptyCollectionException;
+import lab5.common.dto.CommandResponseDto;
+import lab5.common.dto.ShowCommandDto;
 import lab5.server.ClientCaller;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class ShowCommand extends BaseCommand {
 
@@ -26,27 +19,11 @@ public class ShowCommand extends BaseCommand {
 
     @Override
     protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) {
-        if (set.size() == 0) {
-                String except = "collection is empty!";
-
-                clientCaller.sendToClient(transformer.Serialize(set)); ///////////
-                throw new EmptyCollectionException();
-            }
-
-        else{
-            String collection="";
-            Iterator<Worker> it1 = set.iterator();
-            String pattern = "dd.MM.yyyy";
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            DateFormat df = new SimpleDateFormat(pattern);
-            while (it1.hasNext()) {
-                Worker bum = it1.next();
-                collection = collection+bum.toString();
-                clientCaller.sendToClient(transformer.Serialize(set));
-                //outputStreamWriter.write((bum.getName()+";"+Long.toString(bum.getCoordinates().getX())+";"+Integer.toString(bum.getCoordinates().getY())+";"+Float.toString(bum.getSalary())+";"+df.format(bum.getStartDate())+";"+df.format(bum.getEndDate())+";"+bum.getPerson().getBirthday().format(formatter)+";"+Float.toString(bum.getPerson().getHeight())+";"+Float.toString(bum.getPerson().getWeight())+";"+bum.getPosition().toString())+"\r\n");
-            }
-        }
+        ShowCommandDto showCommandDto = new ShowCommandDto();
+        showCommandDto.setWorkers(new ArrayList<>(set));
             //Commands.show(params, set);
-
+        CommandResponseDto dto = new CommandResponseDto(showCommandDto);
+        clientCaller.sendToClient(transformer.Serialize(dto));
     }
 }
+
