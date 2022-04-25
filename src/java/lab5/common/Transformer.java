@@ -96,7 +96,6 @@ public class Transformer {
     }
     public static Worker WorkerToWorker(Worker bum, Worker bum1){
         bum.setCoordinates(bum1.getCoordinates());
-        bum.setCreationDate(bum1.getCreationDate());
         bum.setPerson(bum1.getPerson());
         bum.setEndDate(bum1.getEndDate());
         bum.setName(bum1.getName());

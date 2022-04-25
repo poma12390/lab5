@@ -20,7 +20,16 @@ public class InfoCommand extends BaseCommand {
 
     @Override
     protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) {
-        System.out.println("123");
-
+        String response = "";
+        if (set.size() == 0){
+            response = response + "empty collection";
+        }
+        else{
+            Iterator<Worker> it = set.iterator();
+            Worker p1 = it.next();
+            response = response + "Type - Worker \r\n";
+            response = response + "Created date - " + p1.getCreationDate();
+        }
+        clientCaller.sendToClient(transformer.Serialize(response));
     }
 }

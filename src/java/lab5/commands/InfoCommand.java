@@ -21,7 +21,6 @@ public class InfoCommand extends BaseCommand{
 
     @Override
     protected void Execute(List<String> params, LinkedHashSet<Worker> set) {
-        System.out.println("222");
         ParamsChecker.checkParams(0, params);
             if (set.size() == 0){
                 throw  new EmptyCollectionException();

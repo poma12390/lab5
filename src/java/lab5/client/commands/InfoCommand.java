@@ -1,5 +1,6 @@
 package lab5.client.commands;
 
+import lab5.client.ServerReceiver;
 import lab5.common.dto.CommandRequestDto;
 import lab5.common.dto.InfoCommandDto;
 
@@ -18,5 +19,9 @@ public class InfoCommand extends BaseCommand {
         CommandRequestDto <InfoCommandDto> crd = new CommandRequestDto<>("info", dto);
 
         serverCaller.sendToServer(transformer.Serialize(crd));
+
+        byte[] buf = ServerReceiver.receiveFromServer();
+        String response = (String) transformer.DeSerialize(buf);
+        System.out.println(response);
     }
 }
