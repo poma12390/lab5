@@ -1,9 +1,9 @@
 package lab5.client.inputters;
 
+import lab5.client.commands.Utils;
 import lab5.common.exceptions.EmptyStringException;
 import lab5.common.exceptions.EndStreamException;
 import lab5.common.exceptions.InvalidDateFormatException;
-import lab5.runners.Commands;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,7 +41,7 @@ public abstract class AbstractInputer<T> {
                 if (!blockPrompt) System.out.println("not a number ");
             }
             catch (NullPointerException | NoSuchElementException e) {
-                Commands.funExit();
+                Utils.funExit();
             }
             catch (EndStreamException e) {
                 throw e;

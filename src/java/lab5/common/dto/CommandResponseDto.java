@@ -1,15 +1,11 @@
 package lab5.common.dto;
 
-import lab5.common.Worker;
-
 import java.io.Serializable;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.List;
 
 public class CommandResponseDto<T extends Serializable> implements Serializable {
     private String response;
-    private Worker worker;
+    private WorkerDto worker;
+    private T commandArgs;
 
     public T getCommandArgs() {
         return commandArgs;
@@ -19,8 +15,6 @@ public class CommandResponseDto<T extends Serializable> implements Serializable 
         this.commandArgs = commandArgs;
     }
 
-    private T commandArgs;
-
     public String getResponse() {
         return response;
     }
@@ -29,11 +23,11 @@ public class CommandResponseDto<T extends Serializable> implements Serializable 
         this.response = response;
     }
 
-    public Worker getWorker() {
+    public WorkerDto getWorker() {
         return worker;
     }
 
-    public void setWorker(Worker worker) {
+    public void setWorker(WorkerDto worker) {
         this.worker = worker;
     }
 

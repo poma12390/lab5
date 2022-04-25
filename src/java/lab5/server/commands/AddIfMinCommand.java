@@ -1,19 +1,18 @@
 package lab5.server.commands;
 
-import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
-import lab5.common.dto.*;
-import lab5.runners.Commands;
+import lab5.common.dto.AddIfMinCommandDto;
+import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
+import lab5.common.dto.WorkerDto;
 import lab5.server.ClientCaller;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.LinkedHashSet;
-import java.util.List;
 
-import static lab5.runners.Commands.makeId;
+import static lab5.server.commands.Commands.makeId;
 
 public class AddIfMinCommand extends BaseCommand {
     @Override

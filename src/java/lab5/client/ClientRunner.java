@@ -1,8 +1,8 @@
 package lab5.client;
 
 import lab5.client.commands.Utils;
-import lab5.common.Worker;
 import lab5.common.Transformer;
+import lab5.common.Worker;
 import lab5.common.dto.AddCommandDto;
 import lab5.common.dto.CommandRequestDto;
 import lab5.common.dto.WorkerDto;
@@ -34,7 +34,7 @@ public class ClientRunner {
                 Utils.runCommandFromString(input);
             }
         } catch (NullPointerException | NoSuchElementException e) {
-            lab5.runners.Commands.funExit();
+            Utils.funExit();
         } catch (Exception e) {
             e.printStackTrace();
         }

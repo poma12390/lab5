@@ -1,24 +1,18 @@
 package lab5.server.commands;
 
-import lab5.client.commands.ParamsChecker;
 import lab5.common.Transformer;
 import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
 import lab5.common.dto.CommandResponseDto;
-import lab5.common.dto.FilterBySalaryCommandDto;
 import lab5.common.dto.RemoveAllByEndDateCommandDto;
 import lab5.common.exceptions.InvalidDateFormatException;
 import lab5.common.exceptions.InvalidEndDateException;
 import lab5.server.ClientCaller;
-import lab5.setterrs.SetData;
 
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class RemoveAllByEndDateCommand extends BaseCommand {
     @Override

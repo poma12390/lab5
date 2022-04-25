@@ -7,12 +7,26 @@ import lab5.common.exceptions.EmptyCollectionException;
 import lab5.common.exceptions.EndStreamException;
 import lab5.common.exceptions.InvalidDataException;
 import lab5.common.exceptions.MissedCommandArgumentException;
-import lab5.setterrs.*;
+import lab5.server.setters.SetCordinates;
+import lab5.server.setters.SetData;
+import lab5.server.setters.SetId;
+import lab5.server.setters.SetName;
+import lab5.server.setters.SetPersParams;
+import lab5.server.setters.SetPosition;
+import lab5.server.setters.SetSalary;
 
-import java.io.*;
-
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.Serializable;
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 
 

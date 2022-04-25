@@ -1,4 +1,4 @@
-package lab5.setterrs;
+package lab5.server.setters;
 
 import lab5.common.Worker;
 import lab5.common.exceptions.EmptyStringException;

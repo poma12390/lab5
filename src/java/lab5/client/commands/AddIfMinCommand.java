@@ -3,8 +3,10 @@ package lab5.client.commands;
 import lab5.client.ServerReceiver;
 import lab5.common.Transformer;
 import lab5.common.Worker;
-import lab5.common.dto.*;
-import lab5.runners.Commands;
+import lab5.common.dto.AddIfMinCommandDto;
+import lab5.common.dto.CommandRequestDto;
+import lab5.common.dto.CommandResponseDto;
+import lab5.common.dto.WorkerDto;
 
 import java.io.IOException;
 import java.util.List;

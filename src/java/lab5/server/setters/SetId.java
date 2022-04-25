@@ -1,9 +1,10 @@
-package lab5.setterrs;
+package lab5.server.setters;
 
+import lab5.common.Worker;
 import lab5.common.exceptions.DublicateIdException;
 import lab5.common.exceptions.EmptyStringException;
-import lab5.runners.Commands;
-import lab5.common.Worker;
+
+import static lab5.server.commands.Commands.getIds;
 
 public class SetId {
     public static void setId(String id, Worker bum) throws EmptyStringException, DublicateIdException {
@@ -14,12 +15,12 @@ public class SetId {
             if (f < 0) {
                 throw new EmptyStringException();
             } else {
-                if (Commands.getIds().contains(f)){
+                if (getIds().contains(f)){
                     throw new DublicateIdException();
                 }
                 else{
                     bum.setId(f);
-                    Commands.getIds().add(f);
+                    getIds().add(f);
                 }
 
             }

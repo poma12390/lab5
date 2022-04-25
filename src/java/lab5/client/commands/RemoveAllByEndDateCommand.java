@@ -1,14 +1,11 @@
 package lab5.client.commands;
 
 import lab5.client.ServerReceiver;
-import lab5.common.Worker;
 import lab5.common.dto.CommandRequestDto;
 import lab5.common.dto.CommandResponseDto;
-import lab5.common.dto.PrintFieldDescendingEndDateCommandDto;
 import lab5.common.dto.RemoveAllByEndDateCommandDto;
 import lab5.common.exceptions.InvalidDateFormatException;
 import lab5.common.exceptions.InvalidEndDateException;
-import lab5.setterrs.SetData;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
