@@ -21,7 +21,7 @@ public class InfoCommand extends BaseCommand {
     @Override
     protected void Execute(CommandRequestDto<? extends Serializable> params, LinkedHashSet<Worker> set, Transformer transformer, ClientCaller clientCaller) {
         String response = "";
-        int size = (int) set.stream().count();
+        int size = (int) set.stream().count(); //help me
         if (size == 0){
             response = response + "empty collection";
         }
